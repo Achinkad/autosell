@@ -1,7 +1,7 @@
 package modelo;
 
 public class Peca {
-    private String nome;
+
     private String referencia;
     private String marca;
     private float preco;
@@ -9,8 +9,7 @@ public class Peca {
     private String marcaVeiculo;
     private String modeloVeiculo;
 
-    public Peca(String nome, String referencia, String marca, float preco, String descricao, String marcaVeiculo, String modeloVeiculo) {
-        this.nome = nome;
+    public Peca(String referencia, String marca, float preco, String descricao, String marcaVeiculo, String modeloVeiculo) {
         this.referencia = referencia;
         this.marca = marca;
         this.preco = preco;
@@ -19,13 +18,6 @@ public class Peca {
         this.modeloVeiculo = modeloVeiculo;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getReferencia() {
         return referencia;

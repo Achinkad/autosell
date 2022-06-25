@@ -1,11 +1,14 @@
 package vista;
 
+import modelo.DadosApp;
+import modelo.Peca;
 import vista.armazens.JanelaArmazens;
 import vista.clientes.JanelaClientes;
 import vista.estatisticas.JanelaEstatisticas;
 import vista.eventos.JanelaEventos;
 import vista.filiais.JanelaFiliais;
 import vista.oficinas.JanelaOficinas;
+import vista.pecas.DadosPeca;
 import vista.pecas.JanelaPecas;
 import vista.reparacoes.JanelaReparacoes;
 import vista.transacoes.JanelaTransacoes;
@@ -49,6 +52,10 @@ public class AutoSell extends JFrame {
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
         pack();
+
+        Peca p = new Peca("ref","Chinês",800,"desc","BMW","15");
+        DadosApp.getInstancia().addPeca(p);
+        //m.out.println("Peca Ref-> "+DadosApp.getInstancia().getPecas().get(0)+"ref p-> "+p);
     }
 
     public static void main(String[] args) {

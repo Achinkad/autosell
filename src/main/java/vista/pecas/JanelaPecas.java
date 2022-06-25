@@ -5,6 +5,9 @@ import modelo.Peca;
 import vista.MenuAux;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
 public class JanelaPecas extends JFrame {
@@ -28,6 +31,9 @@ public class JanelaPecas extends JFrame {
 
     private MenuAux menuAux;
 
+    private Peca pecaSelecionada;
+    private LinkedList<Peca> pecas;
+
     public JanelaPecas() {
         setContentPane(painelPecas);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -48,14 +54,52 @@ public class JanelaPecas extends JFrame {
 
         //Lista de peças
         DadosApp da = DadosApp.getInstancia();
-        LinkedList<Peca> pecas = da.getPecas();
+        pecas = da.getPecas();
 
         DefaultListModel model = new DefaultListModel();
         for (Peca p : pecas) {
             listaDePecas.setModel(model);
-            model.addElement("Nome: "+p.getNome()+"   Marca: "+p.getMarca()+"     Modelo: "+p.getModeloVeiculo()+"   Preço: "+p.getPreco());
+            model.addElement("Descrição: "+p.getDescricao()+"   Marca: "+p.getMarca()+"     Modelo: "+p.getModeloVeiculo()+"   Preço: "+p.getPreco());
         }
+
+
+        // Define a seleção única para a lista
+        listaDePecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        /*listaDePecas.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                System.out.println(e);
+                if (listaDePecas.getSelectedValue() != null) {
+                    int sel = listaDePecas.getSelectedValue();
+                    JOptionPane.showMessageDialog(new JFrame(),"Hello, "+pecaSelecionada.toString());
+                }
+            }
+        });*/
+
+        consultarButton.addActionListener(this::btnConsultarActionPerformed);
+        editarButton.addActionListener(this::btnEditarActionPerformed);
+
+
         pack();
         setVisible(true);
+    }
+    private void btnConsultarActionPerformed(ActionEvent e){
+        int selected = listaDePecas.getSelectedIndex();
+        //System.out.println(selected+"");
+        if(selected < 0) {
+            return;
+        }
+        pecaSelecionada = pecas.get(selected);
+        new DadosPeca(pecaSelecionada, false);
+    }
+
+    private void btnEditarActionPerformed(ActionEvent e){
+        int selected = listaDePecas.getSelectedIndex();
+        //System.out.println(selected+"");
+        if(selected < 0) {
+            return;
+        }
+        pecaSelecionada = pecas.get(selected);
+        new DadosPeca(pecaSelecionada, true);
     }
 }
