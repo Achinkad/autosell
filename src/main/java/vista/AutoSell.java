@@ -14,6 +14,7 @@ import vista.veiculos.JanelaVeiculos;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.LinkedList;
 
 public class AutoSell extends JFrame {
     private JPanel painelPrincipal;
@@ -29,79 +30,30 @@ public class AutoSell extends JFrame {
     private JButton btnTransportes;
     private JButton btnEstatisticas;
 
+    private MenuAux menuAux;
+
     public AutoSell() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(painelPrincipal);
-
-        btnVeiculos.addActionListener(this::btnVeiculosActionPerformed);
-        btnClientes.addActionListener(this::btnClientesActionPerformed);
-        btnFiliais.addActionListener(this::btnFiliaisActionPerformed);
-        btnEventos.addActionListener(this::btnEventosActionPerformed);
-        btnTransacoes.addActionListener(this::btnTransacoesActionPerformed);
-        btnReparacoes.addActionListener(this::btnReparacoesActionPerformed);
-        btnPecas.addActionListener(this::btnPecasActionPerformed);
-        btnOficinas.addActionListener(this::btnOficinasActionPerformed);
-        btnArmazens.addActionListener(this::btnArmazensActionPerformed);
-        btnTransportes.addActionListener(this::btnTransportesActionPerformed);
-        btnEstatisticas.addActionListener(this::btnEstatisticasActionPerformed);
+        menuAux = new MenuAux();
+        LinkedList<JButton> menuItems = new LinkedList<>();
+        menuItems.add(btnVeiculos);
+        menuItems.add(btnClientes);
+        menuItems.add(btnFiliais);
+        menuItems.add(btnEventos);
+        menuItems.add(btnTransacoes);
+        menuItems.add(btnReparacoes);
+        menuItems.add(btnPecas);
+        menuItems.add(btnOficinas);
+        menuItems.add(btnArmazens);
+        menuItems.add(btnTransportes);
+        menuItems.add(btnEstatisticas);
+        menuAux.iniciaMenu(menuItems);
 
         pack();
     }
 
-    private void btnVeiculosActionPerformed(ActionEvent e) {
-        JanelaVeiculos janelaVeiculos = new JanelaVeiculos();
-        janelaVeiculos.setVisible(true);
-    }
 
-    private void btnClientesActionPerformed(ActionEvent e) {
-        JanelaClientes janelaClientes = new JanelaClientes();
-        janelaClientes.setVisible(true);
-    }
-
-    private void btnFiliaisActionPerformed(ActionEvent e) {
-        JanelaFiliais janelaFiliais = new JanelaFiliais();
-        janelaFiliais.setVisible(true);
-    }
-
-    private void btnEventosActionPerformed(ActionEvent e) {
-        JanelaEventos janelaEventos = new JanelaEventos();
-        janelaEventos.setVisible(true);
-    }
-
-    private void btnTransacoesActionPerformed(ActionEvent e) {
-        JanelaTransacoes janelaTransacoes = new JanelaTransacoes();
-        janelaTransacoes.setVisible(true);
-    }
-
-    private void btnReparacoesActionPerformed(ActionEvent e) {
-        JanelaReparacoes janelaReparacoes = new JanelaReparacoes();
-        janelaReparacoes.setVisible(true);
-    }
-
-    private void btnPecasActionPerformed(ActionEvent e) {
-        JanelaPecas janelaPecas = new JanelaPecas();
-        janelaPecas.setVisible(true);
-    }
-
-    private void btnOficinasActionPerformed(ActionEvent e) {
-        JanelaOficinas janelaOficinas = new JanelaOficinas();
-        janelaOficinas.setVisible(true);
-    }
-
-    private void btnArmazensActionPerformed(ActionEvent e) {
-        JanelaArmazens janelaArmazens = new JanelaArmazens();
-        janelaArmazens.setVisible(true);
-    }
-
-    private void btnTransportesActionPerformed(ActionEvent e) {
-        JanelaTransportes janelaTransportes = new JanelaTransportes();
-        janelaTransportes.setVisible(true);
-    }
-
-    private void btnEstatisticasActionPerformed(ActionEvent e) {
-        JanelaEstatisticas janelaEstatisticas = new JanelaEstatisticas();
-        janelaEstatisticas.setVisible(true);
-    }
 
     public static void main(String[] args) {
         new AutoSell().setVisible(true);
