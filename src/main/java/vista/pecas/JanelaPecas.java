@@ -65,19 +65,11 @@ public class JanelaPecas extends JFrame {
 
         // Define a seleção única para a lista
         listaDePecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        /*listaDePecas.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                System.out.println(e);
-                if (listaDePecas.getSelectedValue() != null) {
-                    int sel = listaDePecas.getSelectedValue();
-                    JOptionPane.showMessageDialog(new JFrame(),"Hello, "+pecaSelecionada.toString());
-                }
-            }
-        });*/
+
 
         consultarButton.addActionListener(this::btnConsultarActionPerformed);
         editarButton.addActionListener(this::btnEditarActionPerformed);
+        registarPeçaButton.addActionListener(this::btnRegistarActionPerformed);
 
 
         pack();
@@ -101,5 +93,8 @@ public class JanelaPecas extends JFrame {
         }
         pecaSelecionada = pecas.get(selected);
         new DadosPeca(pecaSelecionada, true);
+    }
+    private void btnRegistarActionPerformed(ActionEvent e){
+        new RegistarPeca();
     }
 }

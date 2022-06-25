@@ -16,9 +16,7 @@ public class Peca {
         this.descricao = descricao;
         this.marcaVeiculo = marcaVeiculo;
         this.modeloVeiculo = modeloVeiculo;
-
     }
-
 
     public String getReferencia() {
         return referencia;

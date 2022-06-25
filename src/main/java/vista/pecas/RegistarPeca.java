@@ -1,6 +1,10 @@
 package vista.pecas;
 
+import modelo.DadosApp;
+import modelo.Peca;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class RegistarPeca extends JDialog {
     private JPanel painelPrincipal;
@@ -15,20 +19,29 @@ public class RegistarPeca extends JDialog {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextArea textArea1;
-    private JTextField textField1;
+    private JTextField textReferencia;
+    private JTextField textMarca;
+    private JTextField textPreco;
+    private JTextField textMaV;
+    private JTextArea textDescricao;
+    private JTextField textMoV;
     private JButton adicionarButton;
+    private JButton cancelarButton;
+    private JPanel painelPecas;
+
 
     public RegistarPeca(){
-        setContentPane(painelPrincipal);
+        setContentPane(painelPecas);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
         pack();
         setVisible(true);
+
+        adicionarButton.addActionListener(this::btnRegistarActionPerformed);
     }
+
+    private void btnRegistarActionPerformed(ActionEvent e){
+        DadosApp.getInstancia().addPeca(new Peca(textReferencia.getText(),textMarca.getText(),Float.parseFloat(textPreco.getText()),textDescricao.getText(),textMaV.getText(),textMoV.getText()));
+        dispose();
+    }
+
 }
