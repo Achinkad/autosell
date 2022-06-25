@@ -46,21 +46,27 @@ public class DadosApp {
     public LinkedList<Veiculo> getVeiculos() {
         return new LinkedList<>(veiculos);
     }
+
     public LinkedList<FichaVeiculo> getFichasVeiculo() {
         return new LinkedList<>(fichasVeiculo);
     }
+
     public LinkedList<Cliente> getClientes() {
         return new LinkedList<>(clientes);
     }
+
     public LinkedList<FichaCliente> getFichasCliente() {
         return new LinkedList<>(fichasCliente);
     }
+
     public LinkedList<Local> getLocais() {
         return new LinkedList<>(locais);
     }
+
     public LinkedList<Evento> getEventos() {
         return new LinkedList<>(eventos);
     }
+
     public LinkedList<Filial> getFiliais() {
         return new LinkedList<>(filiais);
     }
@@ -68,24 +74,31 @@ public class DadosApp {
     public LinkedList<Transporte> getTransportes() {
         return new LinkedList<>(transportes);
     }
+
     public LinkedList<Peca> getPecas() {
         return new LinkedList<>(pecas);
     }
+
     public LinkedList<PecasArmazem> getPecasArmazem() {
         return new LinkedList<>(pecasArmazem);
     }
+
     public LinkedList<Armazem> getArmazens() {
         return new LinkedList<>(armazens);
     }
+
     public LinkedList<Oficina> getOficinas() {
         return new LinkedList<>(oficinas);
     }
+
     public LinkedList<Reparacao> getReparacaos() {
         return new LinkedList<>(reparacaos);
     }
+
     public LinkedList<LinhaReparacao> getLinhaReparacao() {
         return new LinkedList<>(linhaReparacao);
     }
+
     public LinkedList<Transacao> getTransacoes() {
         return new LinkedList<>(transacoes);
     }

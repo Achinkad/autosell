@@ -1,17 +1,15 @@
 package vista.veiculos;
 
-import modelo.DadosApp;
-import modelo.Peca;
 import modelo.Veiculo;
 import vista.MenuAux;
-import vista.clientes.JanelaClientes;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
-public class JanelaVeiculos extends JFrame{
-    private JPanel painelVeiculos;
+
+public class RegistarVeiculo extends JDialog {
+    private JPanel registarVeiculo;
     private JButton btnVeiculos;
     private JButton btnClientes;
     private JButton btnFiliais;
@@ -23,16 +21,21 @@ public class JanelaVeiculos extends JFrame{
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
-    private JPanel painelVeiculos1;
-    private JButton consultarButton;
-    private JButton editarButton;
-    private JButton eliminarButton;
-    private JButton registarVeiculoButton;
-    private JList listaDeVeiculos;
+    private JTextField Matricula;
+    private JTextField Marca;
+    private JTextField Modelo;
+    private JSpinner Quilometragem;
+    private JTextField Cor;
+    private JTextField Observacoes;
+    private JTextField MotivoVenda;
+    private JComboBox AnteriorDono;
+    private JButton btnAdicionarActionPerformed;
+    private JButton btnCancelarActionPerformed;
     private MenuAux menuAux;
 
-    public JanelaVeiculos() {
-        setContentPane(painelVeiculos);
+
+    public RegistarVeiculo() {
+        setContentPane(registarVeiculo);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         menuAux = new MenuAux();
         LinkedList<JButton> menuItems = new LinkedList<>();
@@ -48,23 +51,19 @@ public class JanelaVeiculos extends JFrame{
         menuItems.add(btnTransportes);
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
-        //Lista de veiculos
-        DadosApp da = DadosApp.getInstancia();
-        LinkedList<Veiculo> veiculos = da.getVeiculos();
-
-        DefaultListModel model = new DefaultListModel();
-        for (Veiculo v : veiculos) {
-            listaDeVeiculos.setModel(model);
-            model.addElement("Marca: "+v.getMarca()+"   Modelo: "+v.getModelo());
-        }
-        registarVeiculoButton.addActionListener(this::registarVeiculoButton);
+        btnCancelarActionPerformed.addActionListener(this::btnCancelarActionPerformed);
 
         pack();
         setVisible(true);
     }
-    private void registarVeiculoButton(ActionEvent e) {
+    private void btnAdicionarActionPerformed(ActionEvent e) {
+
         RegistarVeiculo registarVeiculo = new RegistarVeiculo();
         registarVeiculo.setVisible(true);
     }
-
+    private void btnCancelarActionPerformed(ActionEvent e) {
+        dispose();
+        JanelaVeiculos janelaVeiculos = new JanelaVeiculos();
+        janelaVeiculos.setVisible(true);
+    }
 }
