@@ -37,10 +37,15 @@ public class RegistarPeca extends JDialog {
         setVisible(true);
 
         adicionarButton.addActionListener(this::btnRegistarActionPerformed);
+        cancelarButton.addActionListener(this::btnCancelarActionPerformed);
     }
 
     private void btnRegistarActionPerformed(ActionEvent e){
         DadosApp.getInstancia().addPeca(new Peca(textReferencia.getText(),textMarca.getText(),Float.parseFloat(textPreco.getText()),textDescricao.getText(),textMaV.getText(),textMoV.getText()));
+        dispose();
+    }
+
+    private void btnCancelarActionPerformed(ActionEvent e){
         dispose();
     }
 

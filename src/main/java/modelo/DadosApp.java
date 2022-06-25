@@ -78,6 +78,9 @@ public class DadosApp {
     public LinkedList<Peca> getPecas() {
         return new LinkedList<>(pecas);
     }
+    public void removerPeca(Peca peca){
+        pecas.remove(peca);
+    }
 
     public LinkedList<PecasArmazem> getPecasArmazem() {
         return new LinkedList<>(pecasArmazem);
@@ -102,6 +105,7 @@ public class DadosApp {
     public LinkedList<Transacao> getTransacoes() {
         return new LinkedList<>(transacoes);
     }
+
     public void addPeca(Peca peca){
         pecas.add(peca);
     }

@@ -27,6 +27,7 @@ public class DadosPeca extends JDialog {
     private JTextArea textDescricao;
     private JTextField textMoV;
     private JButton editarButton;
+    private JButton cancelarButton;
 
     private MenuAux menuAux;
 
@@ -53,6 +54,7 @@ public class DadosPeca extends JDialog {
         menuAux.iniciaMenu(menuItems);
 
         editarButton.setVisible(false);
+        cancelarButton.setVisible(false);
 
         textDescricao.setText(peca.getDescricao());
         textMarca.setText(peca.getMarca());
@@ -66,8 +68,9 @@ public class DadosPeca extends JDialog {
         if(isEditavel){
             editarButton.setVisible(true);
             editarButton.addActionListener(this::btnEditarActionListener);
+            cancelarButton.setVisible(true);
+            cancelarButton.addActionListener(this::btnCancelarActionListener);
         }
-
 
         pack();
         setVisible(true);
@@ -80,6 +83,9 @@ public class DadosPeca extends JDialog {
         pecaPresente.setModeloVeiculo(textMoV.getText());
         pecaPresente.setReferencia(textReferencia.getText());
         pecaPresente.setPreco(Float.parseFloat(textPreco.getText()));
+        dispose();
+    }
+    private void btnCancelarActionListener(ActionEvent e){
         dispose();
     }
 
