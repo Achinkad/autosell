@@ -17,9 +17,6 @@ import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
 public class MenuAux {
-    public MenuAux(){
-
-    }
     public void iniciaMenu(LinkedList<JButton> menuItems){
         for (int i = 0; i < menuItems.size(); i++) {
             JButton item = menuItems.get(i);

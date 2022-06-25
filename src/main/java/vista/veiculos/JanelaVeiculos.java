@@ -20,7 +20,6 @@ public class JanelaVeiculos extends JFrame{
     private JButton btnEstatisticas;
     private MenuAux menuAux;
 
-
     public JanelaVeiculos() {
         setContentPane(painelVeiculos);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

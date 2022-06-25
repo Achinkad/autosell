@@ -1,5 +1,7 @@
 package vista.pecas;
 
+import modelo.DadosApp;
+import modelo.Peca;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -18,6 +20,11 @@ public class JanelaPecas extends JFrame {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
+    private JList listaDePecas;
+    private JButton consultarButton;
+    private JButton editarButton;
+    private JButton eliminarButton;
+    private JButton registarPeçaButton;
 
     private MenuAux menuAux;
 
@@ -38,6 +45,16 @@ public class JanelaPecas extends JFrame {
         menuItems.add(btnTransportes);
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
+
+        //Lista de peças
+        DadosApp da = DadosApp.getInstancia();
+        LinkedList<Peca> pecas = da.getPecas();
+
+        DefaultListModel model = new DefaultListModel();
+        for (Peca p : pecas) {
+            listaDePecas.setModel(model);
+            model.addElement("Nome: "+p.getNome()+"   Marca: "+p.getMarca()+"     Modelo: "+p.getModeloVeiculo()+"   Preço: "+p.getPreco());
+        }
         pack();
         setVisible(true);
     }

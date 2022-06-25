@@ -29,7 +29,6 @@ public class AutoSell extends JFrame {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
-
     private MenuAux menuAux;
 
     public AutoSell() {
@@ -49,11 +48,8 @@ public class AutoSell extends JFrame {
         menuItems.add(btnTransportes);
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
-
         pack();
     }
-
-
 
     public static void main(String[] args) {
         new AutoSell().setVisible(true);

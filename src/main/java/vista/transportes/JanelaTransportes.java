@@ -18,7 +18,6 @@ public class JanelaTransportes extends JFrame {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
-
     private MenuAux menuAux;
 
     public JanelaTransportes() {
