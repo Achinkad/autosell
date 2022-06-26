@@ -1,6 +1,7 @@
 package vista;
 
 import modelo.*;
+import modelo.Date;
 import vista.armazens.JanelaArmazens;
 import vista.clientes.JanelaClientes;
 import vista.estatisticas.JanelaEstatisticas;

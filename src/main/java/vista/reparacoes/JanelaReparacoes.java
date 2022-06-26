@@ -4,6 +4,7 @@ import modelo.DadosApp;
 import modelo.Oficina;
 import modelo.Reparacao;
 import vista.MenuAux;
+import vista.oficinas.DadosOficina;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -77,14 +78,37 @@ public class JanelaReparacoes extends JFrame {
     }
 
     private void btnEliminarActionPerformed(ActionEvent e) {
-        // TODO
+        if (listaDeReparacoes.getSelectedIndex() >= 0) {
+            int result = JOptionPane.showConfirmDialog(new JFrame(), "Pretende eliminar esta reparação?");
+
+            if (result == 0) {
+                if (listaDeReparacoes.getSelectedIndex() >= 0) {
+                    DadosApp.getInstancia().removerReparacao(reparacoes.get(listaDeReparacoes.getSelectedIndex()));
+                    dispose();
+                }
+            }
+
+            if (result >= 1) {
+                dispose();
+            }
+        }
     }
 
     private void btnEditarActionPerformed(ActionEvent e) {
-        // TODO
+        int selected = listaDeReparacoes.getSelectedIndex();
+
+        if(selected < 0) return;
+
+        reparacaoSelecionada = reparacoes.get(selected);
+        new DadosReparacao(reparacaoSelecionada, true);
     }
 
     private void btnConsultarActionPerformed(ActionEvent e) {
-        // TODO
+        int selected = listaDeReparacoes.getSelectedIndex();
+
+        if(selected < 0) return;
+
+        reparacaoSelecionada = reparacoes.get(selected);
+        new DadosReparacao(reparacaoSelecionada, false);
     }
 }
