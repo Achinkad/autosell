@@ -18,6 +18,14 @@ public class JanelaEstatisticas extends JFrame {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
+    private JButton marcasEModelosMaisButton;
+    private JButton marcasEModelosMenosButton;
+    private JButton eventosEFiliaisComButton;
+    private JButton eventosEFiliaisComButton1;
+    private JButton marcasEModelosQueButton;
+    private JButton marcasEModelosQueButton1;
+    private JButton consultarOLucroButton;
+    private JButton consultarAsDespesasButton;
     private MenuAux menuAux;
 
     public JanelaEstatisticas() {

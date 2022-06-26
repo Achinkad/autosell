@@ -8,7 +8,6 @@ import vista.veiculos.JanelaVeiculos;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class RegistarEvento extends JDialog {
@@ -103,8 +102,8 @@ public class RegistarEvento extends JDialog {
         if(veiculos.size()>(Integer)nMaxVeiculos.getValue()){
             return;
         }
-        Date dataInicio= new Date((Integer)anoInicio.getValue(),(Integer)mesInicio.getValue(),(Integer)diaInicio.getValue());
-        Date dataFim= new Date((Integer)anoDim.getValue(),(Integer)mesFim.getValue(),(Integer)diaFim.getValue());
+        Date dataInicio= new Date((Integer)diaInicio.getValue(),(Integer)mesInicio.getValue(),(Integer)anoInicio.getValue());
+        Date dataFim= new Date((Integer)diaFim.getValue(),(Integer)mesFim.getValue(),(Integer)anoDim.getValue());
 
 
             DadosApp.getInstancia().addEvento(new Evento(dataInicio,dataFim,filialSelecionada,designacao.getText(),localizacao.getText(),morada.getText(),(Integer)nMaxVeiculos.getValue(),veiculosSelecionados));

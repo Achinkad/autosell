@@ -5,7 +5,6 @@ import vista.MenuAux;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class DadosEvento extends JDialog{
@@ -71,12 +70,12 @@ public class DadosEvento extends JDialog{
         localizacao.setText(evento.getLocalizacao());
         morada.setText(evento.getMorada());
         nMaxVeiculos.setValue(evento.getNumMaxVeiuclos());
-        dataInicio.setValue(evento.getDataInicio().getDate());
-        mesInicio.setValue(evento.getDataInicio().getMonth());
-        anoInicio.setValue(evento.getDataInicio().getYear());
-        dataFim.setValue(evento.getDateFim().getDate());
-        mesFim.setValue(evento.getDateFim().getMonth());
-        anoFim.setValue(evento.getDateFim().getYear());
+        dataInicio.setValue(evento.getDataInicio().getDia());
+        mesInicio.setValue(evento.getDataInicio().getMes());
+        anoInicio.setValue(evento.getDataInicio().getAno());
+        dataFim.setValue(evento.getDateFim().getDia());
+        mesFim.setValue(evento.getDateFim().getMes());
+        anoFim.setValue(evento.getDateFim().getAno());
         DadosApp da = DadosApp.getInstancia();
         filiais = da.getFiliais();
         DefaultListModel model = new DefaultListModel();
@@ -105,8 +104,8 @@ public class DadosEvento extends JDialog{
         setVisible(true);
     }
     private void btnEditarActionListener(ActionEvent e){
-        Date dateInicio= new Date((Integer)anoInicio.getValue(),(Integer)mesInicio.getValue(),(Integer)dataInicio.getValue());
-        Date dateFim= new Date((Integer)anoFim.getValue(),(Integer)mesFim.getValue(),(Integer)dataFim.getValue());
+        Date dateInicio= new Date((Integer)dataInicio.getValue(),(Integer)mesInicio.getValue(),(Integer)anoInicio.getValue());
+        Date dateFim= new Date((Integer)dataFim.getValue(),(Integer)mesFim.getValue(),(Integer)anoFim.getValue());
         eventoPresente.setDesignacao(designacao.getText());
         eventoPresente.setLocalizacao(localizacao.getText());
         eventoPresente.setMorada(morada.getText());

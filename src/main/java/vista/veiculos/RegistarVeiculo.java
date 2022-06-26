@@ -79,7 +79,6 @@ public class RegistarVeiculo extends JDialog {
         for(Cliente c: clientes){
             if (c.getNome() == anteriorDonoBack){
                 cliente=c;
-                System.out.println(cliente);
                 break;
             }
         }
