@@ -68,26 +68,17 @@ public class DadosArmazem extends JDialog {
             }
         }else{
             int i = 0;
-            //int[] indices = new int[todasAsPecas.size()];
             for (Peca p : todasAsPecas) {
                 if(armazem.getPecas().size() == i) {
-                    //i--;
                     list1.setModel(model);
                     model.addElement("--- Peças não Associada ---");
                 }
                 list1.setModel(model);
                 model.addElement("Descrição: "+p.getDescricao()+"   Marca: "+p.getMarca());
-                /*if (armazem.getPecas().size() < i ) {
-                    indices[i] = i;
-                    System.out.println(i+"\n");
-                }*/
+
                 i++;
             }
-            //list1.setSelectedIndices(indices);
         }
-
-
-
 
         textField1.setText(Integer.toString(armazem.getPecas().size()));
 
