@@ -1,6 +1,7 @@
 package vista.eventos;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 import vista.veiculos.DadosVeiculo;
 import vista.veiculos.JanelaVeiculos;
@@ -86,7 +87,6 @@ public class RegistarEvento extends JDialog {
         setVisible(true);
     }
     private void btnAdicionarActionPerformed(ActionEvent e) {
-
         int selectedFilial = listaFiliais.getSelectedIndex();
         if(selectedFilial < 0) {
             return;
@@ -104,9 +104,37 @@ public class RegistarEvento extends JDialog {
         }
         Date dataInicio= new Date((Integer)diaInicio.getValue(),(Integer)mesInicio.getValue(),(Integer)anoInicio.getValue());
         Date dataFim= new Date((Integer)diaFim.getValue(),(Integer)mesFim.getValue(),(Integer)anoDim.getValue());
+        String designacaoA=designacao.getText();
+        String localizacaoA = localizacao.getText();
+        String moradaA=morada.getText();
+        int maxVeiculo=(Integer)nMaxVeiculos.getValue();
+        if (filialSelecionada==null){
+            Erros.mostrarErro(this, 2, Erros.removeLastChar(filialSelecionada.getDesignacao()));
+
+            if (localizacaoA.isEmpty() || localizacaoA.length()<2 || localizacaoA.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(localizacaoA));
 
 
-            DadosApp.getInstancia().addEvento(new Evento(dataInicio,dataFim,filialSelecionada,designacao.getText(),localizacao.getText(),morada.getText(),(Integer)nMaxVeiculos.getValue(),veiculosSelecionados));
+            }else if(moradaA.isEmpty() || moradaA.length()<2 || moradaA.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(moradaA));
+
+            } else if (maxVeiculo>=0 || maxVeiculo>500) {
+                Erros.mostrarErro(this,9,Erros.removeLastChar(String.valueOf(maxVeiculo)));
+                
+            } else if (veiculosSelecionados.isEmpty()) {
+                Erros.mostrarErro(this, 2, Erros.removeLastChar(null));
+
+            } else if (dataInicio==null || dataInicio.getDia()>31 || dataInicio.getMes()>12 || dataInicio.getAno()>1900) {
+                Erros.mostrarErro(this, 10, Erros.removeLastChar(dataInicio.getData()));
+
+                
+            } else if (dataFim==null || dataInicio.getDia()>31 || dataInicio.getMes()>12 || dataInicio.getAno()>1900 || dataInicio.getDia()*100000000+dataInicio.getMes()*1000000+dataInicio.getAno()*10000>dataFim.getDia()*100000000+dataFim.getMes()*1000000+dataFim.getAno()*10000) {
+                Erros.mostrarErro(this, 11, Erros.removeLastChar(dataFim.getData()));
+
+            }
+        }else {
+            DadosApp.getInstancia().addEvento(new Evento(dataInicio, dataFim, filialSelecionada, designacaoA, localizacaoA, moradaA, maxVeiculo, veiculosSelecionados));
+        }
         dispose();
     }
     private void btnCancelarActionPerformed(ActionEvent e) {

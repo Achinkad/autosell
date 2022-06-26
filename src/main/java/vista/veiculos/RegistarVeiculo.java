@@ -1,6 +1,7 @@
 package vista.veiculos;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -75,14 +76,50 @@ public class RegistarVeiculo extends JDialog {
         setVisible(true);
     }
     private void btnAdicionarActionPerformed(ActionEvent e) {
-
+        String matricula=Matricula.getText();
+        String marca = Marca.getText();
+        String modelo = Modelo.getText();
+        String cor = Cor.getText();
+        int quilometragem = (Integer) Quilometragem.getValue();
+        String observacoes = Observacoes.getText();
+        String motivoVenda= MotivoVenda.getText();
+        
         for(Cliente c: clientes){
             if (c.getNome() == anteriorDonoBack){
                 cliente=c;
                 break;
             }
         }
-        DadosApp.getInstancia().addVeiculo(new Veiculo(Matricula.getText(),Marca.getText(),Modelo.getText(),Cor.getText(),(Integer) Quilometragem.getValue(),Observacoes.getText(),cliente,null,MotivoVenda.getText()));
+        if (matricula.isEmpty()|| matricula.length()<2 || matricula.length()>255){
+            Erros.mostrarErro(this, 1, Erros.removeLastChar(matricula));
+            if(marca.isEmpty() || marca.length()<2 || matricula.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(marca));
+                return;
+
+            } else if (modelo.isEmpty() || modelo.length()<2 || modelo.length()>255) {
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(modelo));
+                return;
+
+            } else if (quilometragem < 0) {
+                Erros.mostrarErro(this, 4, Erros.removeLastChar(String.valueOf(quilometragem)));
+                return;
+
+            } else if (cor.isEmpty() || cor.length()<2 || cor.length()>255) {
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(cor));
+                return;
+            }else if (observacoes.isEmpty() ||observacoes.length()<2 || observacoes.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(observacoes));
+                return;
+            } else if (motivoVenda.isEmpty() || motivoVenda.length() < 2 || motivoVenda.length() > 255) {
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(motivoVenda));
+                return;
+            } else if (cliente==null ) {
+                Erros.mostrarErro(this, 2, Erros.removeLastChar(cliente.getNome()));
+                return;
+            }
+        }else {
+            DadosApp.getInstancia().addVeiculo(new Veiculo(matricula, marca, modelo, cor,quilometragem , observacoes, cliente, null,motivoVenda));
+        }
         dispose();
     }
     private void btnCancelarActionPerformed(ActionEvent e) {
