@@ -18,6 +18,13 @@ public class JanelaTransportes extends JFrame {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
+    private JPanel painelTransportes1;
+    private JPanel painelTransportes2;
+    private JList listaDeVeiculos;
+    private JButton consultarButton;
+    private JButton editarButton;
+    private JButton eliminarButton;
+    private JButton registarTransporteButton;
     private MenuAux menuAux;
 
     public JanelaTransportes() {

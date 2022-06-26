@@ -2,10 +2,11 @@ package vista.eventos;
 
 import modelo.DadosApp;
 import modelo.Evento;
-import modelo.Veiculo;
 import vista.MenuAux;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.text.DateFormat;
 import java.util.LinkedList;
 
 public class JanelaEventos extends JFrame {
@@ -29,6 +30,7 @@ public class JanelaEventos extends JFrame {
     private JButton eliminarButton;
     private JButton registarEvento;
     private LinkedList<Evento> eventos;
+    private Evento eventoSelecionado;
     private MenuAux menuAux;
 
     public JanelaEventos() {
@@ -55,9 +57,55 @@ public class JanelaEventos extends JFrame {
         DefaultListModel model = new DefaultListModel();
         for (Evento e : eventos) {
             listaDeEventos.setModel(model);
-            //model.addElement("Filial: "+e.get+"   Modelo: "+v.getModelo());
+            DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, getLocale());
+            model.addElement("Filial: "+e.getFilial().getDesignacao()+"   Localização: "+e.getLocalizacao()+"   Data de início:"+dateFormat.format(e.getDataInicio())+" Data de fim:"+dateFormat.format(e.getDateFim()));
         }
+        listaDeEventos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        registarEvento.addActionListener(this::btnRegistarActionPerformed);
+        consultarButton.addActionListener(this::btnConsultarActionPerformed);
+        editarButton.addActionListener(this::btnEditarActionPerformed);
+        eliminarButton.addActionListener(this::btnEliminarActionPerformed);
+
         pack();
         setVisible(true);
     }
+    private void btnRegistarActionPerformed(ActionEvent e) {
+
+        RegistarEvento registarEvento = new RegistarEvento();
+        registarEvento.setVisible(true);
+    }
+    private void btnConsultarActionPerformed(ActionEvent e){
+        int selected = listaDeEventos.getSelectedIndex();
+        if(selected < 0) {
+            return;
+        }
+        eventoSelecionado = eventos.get(selected);
+        new DadosEvento(eventoSelecionado, false);
+    }
+
+    private void btnEditarActionPerformed(ActionEvent e){
+        int selected = listaDeEventos.getSelectedIndex();
+        if(selected < 0) {
+            return;
+        }
+        eventoSelecionado = eventos.get(selected);
+        new DadosEvento(eventoSelecionado, true);
+    }
+    private void btnEliminarActionPerformed(ActionEvent e){
+        if(listaDeEventos.getSelectedIndex() >= 0) {
+            int result = JOptionPane.showConfirmDialog(new JFrame(), "Pretende eliminar este evento ?");
+            if (result == 0) {
+                //Sim
+                if (listaDeEventos.getSelectedIndex() >= 0) {
+                    DadosApp.getInstancia().removerEvento(eventos.get(listaDeEventos.getSelectedIndex()));
+                    dispose();
+                }
+            }
+            if (result >= 1) {
+                //Não
+                dispose();
+            }
+        }
+    }
+
 }

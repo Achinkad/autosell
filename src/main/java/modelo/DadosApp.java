@@ -147,8 +147,15 @@ public class DadosApp {
     public void addCLiente(Cliente cliente){
         clientes.add(cliente);
     }
-
+    public void addEvento(Evento evento){
+        eventos.add(evento);
+    }
+    public void addFilial(Filial filial){filiais.add(filial);
+    }
     public void removerVeiculo(Veiculo veiculo) {
         veiculos.remove(veiculo);
+    }
+    public void removerEvento(Evento evento) {
+        eventos.remove(evento);
     }
 }
