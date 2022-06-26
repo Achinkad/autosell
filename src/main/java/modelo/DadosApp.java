@@ -120,7 +120,12 @@ public class DadosApp {
     public LinkedList<Transacao> getTransacoes() {
         return new LinkedList<>(transacoes);
     }
-
+    public void removerTransacao(Transacao transacao) {
+        transacoes.remove(transacao);
+    }
+    public void addTransacao(Transacao transacao){
+        transacoes.add(transacao);
+    }
     public void addPeca(Peca peca){
         pecas.add(peca);
     }
