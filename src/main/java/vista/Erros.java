@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 public class Erros {
     private static final Map<Integer, String> dicionarioErros = new HashMap<>();
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    public static final Pattern VALID_DATE_REGEX = Pattern.compile("^\\d{2}-\\d{2}-\\d{4}$", Pattern.CASE_INSENSITIVE);
 
     static {
         dicionarioErros.put(1, " inválido(a). Por favor, insira um valor com um mínimo de 2 caracteres e um máximo de 225 caracteres.");
@@ -75,5 +76,10 @@ public class Erros {
             if (f.isSede() && !f.equals(filial)) return true;
         }
         return false;
+    }
+
+    public static boolean checkDate(String date) {
+        Matcher matcher = VALID_DATE_REGEX.matcher(date);
+        return matcher.find();
     }
 }

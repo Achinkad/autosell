@@ -174,6 +174,14 @@ public class DadosApp {
         eventos.remove(evento);
     }
 
+    public void removerReparacao(Reparacao reparacao) {
+        reparacaos.remove(reparacao);
+    }
+
+    public void inserirReparacao(Reparacao reparacao) {
+        reparacaos.add(reparacao);
+    }
+
     public void removerTransporte(Transporte transporte) {
         transportes.remove(transporte);
     }

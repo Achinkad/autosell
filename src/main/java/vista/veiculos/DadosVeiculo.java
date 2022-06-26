@@ -3,6 +3,7 @@ package vista.veiculos;
 import modelo.Cliente;
 import modelo.DadosApp;
 import modelo.Veiculo;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -107,21 +108,56 @@ public class DadosVeiculo extends JDialog {
 
 
     private void btnEditarActionListener(ActionEvent e){
+        String matricula=Matricula.getText();
+        String marca = Marca.getText();
+        String modelo = Modelo.getText();
+        String cor = Cor.getText();
+        int quilometragem = (Integer) Quilometragem.getValue();
+        String motivoVenda= MotivoVenda.getText();
+        String observacoes = Observacoes.getText();
 
-        veiculoPresente.setDescricao(Observacoes.getText());
-        veiculoPresente.setMarca(Marca.getText());
-        veiculoPresente.setModelo(Modelo.getText());
-        veiculoPresente.setQuilometragem((Integer) Quilometragem.getValue());
-        veiculoPresente.setCor(Cor.getText());
-        veiculoPresente.setMotivoVenda(MotivoVenda.getText());
-        for(Cliente c: clientes){
-            if (c.getNome() == anteriorDonoBack){
-                cliente=c;
-                System.out.println(cliente);
-                break;
+        if (matricula.isEmpty()|| matricula.length()<2 || matricula.length()>255){
+            Erros.mostrarErro(this, 1, Erros.removeLastChar(matricula));
+            if(marca.isEmpty() || marca.length()<2 || matricula.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(marca));
+
+            } else if (modelo.isEmpty() || modelo.length()<2 || modelo.length()>255) {
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(modelo));
+
+
+            } else if (quilometragem < 0) {
+                Erros.mostrarErro(this, 4, Erros.removeLastChar(String.valueOf(quilometragem)));
+
+
+            } else if (cor.isEmpty() || cor.length()<2 || cor.length()>255) {
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(cor));
+
+            }else if (observacoes.isEmpty() ||observacoes.length()<2 || observacoes.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(observacoes));
+
+            } else if (motivoVenda.isEmpty() || motivoVenda.length() < 2 || motivoVenda.length() > 255) {
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(motivoVenda));
+
+            } else if (cliente==null ) {
+                Erros.mostrarErro(this, 2, Erros.removeLastChar(cliente.getNome()));
+
             }
-        }
-        veiculoPresente.setAntigoDono(cliente);
+        }else {
+            veiculoPresente.setDescricao(observacoes);
+            veiculoPresente.setMarca(marca);
+            veiculoPresente.setModelo(modelo);
+            veiculoPresente.setQuilometragem(quilometragem);
+            veiculoPresente.setCor(cor);
+            veiculoPresente.setMotivoVenda(motivoVenda);
+            for(Cliente c: clientes){
+                if (c.getNome() == anteriorDonoBack){
+                    cliente=c;
+                    System.out.println(cliente);
+                    break;
+                }
+            }
+            veiculoPresente.setAntigoDono(cliente);        }
+
 
 
         dispose();

@@ -1,12 +1,14 @@
 package vista.estatisticas;
 
+import modelo.DadosApp;
+import modelo.TipoTransacao;
+import modelo.Transacao;
 import vista.MenuAux;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
-public class JanelaEstatisticas extends JFrame {
+public class Despesas extends JDialog{
     private JPanel painelEstatisticas;
     private JButton btnVeiculos;
     private JButton btnClientes;
@@ -19,18 +21,10 @@ public class JanelaEstatisticas extends JFrame {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
-    private JButton marcasEModelosMaisButton;
-    private JButton marcasEModelosMenosButton;
-    private JButton eventosEFiliaisComButton;
-    private JButton eventosEFiliaisComButton1;
-    private JButton marcasEModelosQueButton;
-    private JButton marcasEModelosQueButton1;
-    private JButton consultarOLucroButton;
-    private JButton consultarAsDespesasButton;
-    private JButton cancelarButton;
+    private JLabel Despesas;
     private MenuAux menuAux;
-
-    public JanelaEstatisticas() {
+    private LinkedList<Transacao> transacoes;
+    public Despesas() {
         setContentPane(painelEstatisticas);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         menuAux = new MenuAux();
@@ -47,20 +41,20 @@ public class JanelaEstatisticas extends JFrame {
         menuItems.add(btnTransportes);
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
-        cancelarButton.addActionListener(this::btnCancelarActionListener);
-        consultarOLucroButton.addActionListener(this::btnLucroActionPerformed);
-        consultarAsDespesasButton.addActionListener(this::btnDespesasActionPerformed);
+        float despesas=0;
+
+        DadosApp da = DadosApp.getInstancia();
+        transacoes = da.getTransacoes();
+        DefaultListModel model1 = new DefaultListModel();
+        for (Transacao transacao : transacoes) {
+            if (transacao.getTipoTransacao()==TipoTransacao.DEBITO){
+                despesas=despesas+ transacao.getValor();
+            }
+        }
+        Despesas.setText(Math.abs(despesas)+"€");
+
         pack();
         setVisible(true);
 
-    }
-    private void btnCancelarActionListener(ActionEvent e){
-        dispose();
-    }
-    private void btnLucroActionPerformed(ActionEvent e){
-        new Lucro();
-    }
-    private void btnDespesasActionPerformed(ActionEvent e){
-        new Despesas();
     }
 }
