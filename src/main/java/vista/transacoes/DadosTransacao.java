@@ -1,9 +1,6 @@
 package vista.transacoes;
 
-import modelo.Armazem;
-import modelo.DadosApp;
-import modelo.Peca;
-import modelo.Transacao;
+import modelo.*;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -53,9 +50,53 @@ public class DadosTransacao extends JDialog {
 
         editarButton.setVisible(false);
         cancelarButton.setVisible(false);
-        //TODO preencher campos
 
+        textField1.setText(Float.toString(transacao.getValor()));
 
+        if(transacao.getTipoTransacao() == TipoTransacao.DEBITO) {
+            comboBox1.setSelectedIndex(0);
+        }else{
+            comboBox1.setSelectedIndex(1);
+        }
+
+        DefaultListModel modelV = new DefaultListModel();
+        LinkedList<Veiculo> vl = new LinkedList<>();
+        vl.add(transacao.getVeiculo());
+        DefaultListModel modelC = new DefaultListModel();
+        LinkedList<Cliente> cl = new LinkedList<>();
+        cl.add(transacao.getCliente());
+
+        if(!isEditavel){
+            for (Veiculo v : vl) {
+                list1.setModel(modelV);
+                modelV.addElement("Descrição: "+v.getDescricao()+"   Marca: "+v.getMarca());
+            }
+            for (Cliente c : cl) {
+                list2.setModel(modelC);
+                modelC.addElement("Nome: "+c.getNome()+"   Email: "+c.getEmail());
+            }
+        }else{
+            int i = 0;
+            for (Veiculo p : DadosApp.getInstancia().getVeiculos()) {
+                list1.setModel(modelV);
+                modelV.addElement("Descrição: "+p.getDescricao()+"   Marca: "+p.getMarca());
+                if(p == transacao.getVeiculo()){
+                    list1.setSelectedIndex(i);
+                }
+                i++;
+            }
+            i=0;
+            for (Cliente c : DadosApp.getInstancia().getClientes()) {
+                list2.setModel(modelC);
+                modelC.addElement("Nome: "+c.getNome()+"   Email: "+c.getEmail());
+                if(c == transacao.getCliente()){
+                    list2.setSelectedIndex(i);
+                }
+                i++;
+            }
+        }
+
+        transacaoPresente = transacao;
         if(isEditavel) {
             editarButton.setVisible(true);
             cancelarButton.setVisible(true);
@@ -68,21 +109,18 @@ public class DadosTransacao extends JDialog {
     }
 
     private void btnEditarActionPerformed(ActionEvent e){
-
-        //TODO Registar alterações
-        /*armazemPresente.setNome(textNome.getText());
-        armazemPresente.setTelefone(Integer.parseInt(textTelefone.getText()));
-
-        LinkedList<Peca> pecasDoArmazem = armazemPresente.getPecas();
-        int i = 0;
-        int[] indices = list1.getSelectedIndices();
-        for (int selectedIndex : indices) {
-            pecasDoArmazem.add(todasAsPecas.get(selectedIndex-1));
+        transacaoPresente.setValor(Float.parseFloat(textField1.getText()));
+        transacaoPresente.setCliente(DadosApp.getInstancia().getClientes().get(list2.getSelectedIndex()));
+        transacaoPresente.setVeiculo(DadosApp.getInstancia().getVeiculos().get(list1.getSelectedIndex()));
+        if(comboBox1.getSelectedIndex() == 0){
+            transacaoPresente.setTipoTransacao(TipoTransacao.DEBITO);
         }
-        armazemPresente.setPecas(pecasDoArmazem);
-        armazemPresente.setQuantidadePeças(pecasDoArmazem.size());*/
+        if(comboBox1.getSelectedIndex() == 1){
+            transacaoPresente.setTipoTransacao(TipoTransacao.CREDITO);
+        }
         dispose();
     }
+
     private void btnCancelarActionPerformed(ActionEvent e){
         dispose();
     }

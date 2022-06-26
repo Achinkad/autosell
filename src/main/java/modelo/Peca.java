@@ -1,6 +1,6 @@
 package modelo;
 
-public class Peca {
+public class Peca extends Item {
 
     private String referencia;
     private String marca;

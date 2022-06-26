@@ -51,26 +51,16 @@ public class RegistarTransacao extends JDialog {
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
 
-        //Criar novo armazém
-        /*LinkedList<Peca> pecasParaOArmazem = DadosApp.getInstancia().getPecas();
-        DefaultListModel model = new DefaultListModel();
-        for (Peca p : pecasParaOArmazem) {
-            list1.setModel(model);
-            model.addElement("Descrição: "+p.getDescricao()+"   Marca: "+p.getMarca());
-        }
-        this.pecasParaOArmazem = pecasParaOArmazem;*/
-
         DefaultListModel modelV = new DefaultListModel();
         DefaultListModel modelC = new DefaultListModel();
-            for (Veiculo v : DadosApp.getInstancia().getVeiculos()) {
-                listVeiculos.setModel(modelV);
-                modelV.addElement("Matricula: "+v.getMatricula());
-            }
-            for (Cliente c : DadosApp.getInstancia().getClientes()) {
-                listClientes.setModel(modelC);
-                modelC.addElement("Nome: "+c.getNome());
-            }
-
+        for (Veiculo v : DadosApp.getInstancia().getVeiculos()) {
+            listVeiculos.setModel(modelV);
+            modelV.addElement("Matricula: "+v.getMatricula());
+        }
+        for (Cliente c : DadosApp.getInstancia().getClientes()) {
+            listClientes.setModel(modelC);
+            modelC.addElement("Nome: "+c.getNome());
+        }
 
         adicionarButton.addActionListener(this::btnAdicionarActionPerformed);
         cancelarButton.addActionListener(this::btnCancelarActionPerformed);
@@ -80,6 +70,13 @@ public class RegistarTransacao extends JDialog {
     }
     private void btnAdicionarActionPerformed(ActionEvent e){
         DadosApp.getInstancia().addTransacao(new Transacao(DadosApp.getInstancia().getClientes().get(listClientes.getSelectedIndex()),DadosApp.getInstancia().getVeiculos().get(listVeiculos.getSelectedIndex()),Integer.parseInt(textValor.getText())));
+        LinkedList<Transacao> transacoes = DadosApp.getInstancia().getTransacoes();
+        if(comboBox1.getSelectedIndex() == 0){
+            transacoes.get(transacoes.size() - 1).setTipoTransacao(TipoTransacao.DEBITO);
+        }
+        if(comboBox1.getSelectedIndex() == 1){
+            transacoes.get(transacoes.size() - 1).setTipoTransacao(TipoTransacao.CREDITO);
+        }
         dispose();
     }
     private void btnCancelarActionPerformed(ActionEvent e){

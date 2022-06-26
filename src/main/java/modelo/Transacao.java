@@ -1,6 +1,7 @@
 package modelo;
 
 public class Transacao {
+    private TipoTransacao tipoTransacao;
     private Cliente cliente;
     private Veiculo veiculo;
     private float valor;
@@ -9,6 +10,7 @@ public class Transacao {
         this.cliente = cliente;
         this.veiculo = veiculo;
         this.valor = valor;
+        this.tipoTransacao = null;
     }
 
     public Cliente getCliente() {
@@ -33,5 +35,13 @@ public class Transacao {
 
     public void setValor(float valor) {
         this.valor = valor;
+    }
+
+    public TipoTransacao getTipoTransacao() {
+        return tipoTransacao;
+    }
+
+    public void setTipoTransacao(TipoTransacao tipoTransacao) {
+        this.tipoTransacao = tipoTransacao;
     }
 }
