@@ -10,8 +10,12 @@ public class Veiculo {
     private Cliente antigoDono;
     private FichaVeiculo ficha;
 
+    private String motivoVenda;
 
-    public Veiculo(String matricula, String marca, String modelo, String cor, int quilometragem, String descricao, Cliente antigoDono, FichaVeiculo ficha) {
+
+
+
+    public Veiculo(String matricula, String marca, String modelo, String cor, int quilometragem, String descricao, Cliente antigoDono, FichaVeiculo ficha,String motivoVenda) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -20,6 +24,7 @@ public class Veiculo {
         this.descricao = descricao;
         this.antigoDono = antigoDono;
         this.ficha = ficha;
+        this.motivoVenda=motivoVenda;
     }
 
     public String getMatricula() {
@@ -84,5 +89,13 @@ public class Veiculo {
 
     public void setFicha(FichaVeiculo ficha) {
         this.ficha = ficha;
+    }
+
+    public String getMotivoVenda() {
+        return motivoVenda;
+    }
+
+    public void setMotivoVenda(String motivoVenda) {
+        this.motivoVenda = motivoVenda;
     }
 }

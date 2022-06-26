@@ -83,10 +83,12 @@ public class DadosPeca extends JDialog {
         pecaPresente.setModeloVeiculo(textMoV.getText());
         pecaPresente.setReferencia(textReferencia.getText());
         pecaPresente.setPreco(Float.parseFloat(textPreco.getText()));
+
         dispose();
     }
     private void btnCancelarActionListener(ActionEvent e){
         dispose();
     }
+
 
 }

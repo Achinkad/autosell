@@ -141,4 +141,14 @@ public class DadosApp {
     public void removerOficina(Oficina oficina) {
         oficinas.remove(oficina);
     }
+    public void addVeiculo(Veiculo veiculo){
+        veiculos.add(veiculo);
+    }
+    public void addCLiente(Cliente cliente){
+        clientes.add(cliente);
+    }
+
+    public void removerVeiculo(Veiculo veiculo) {
+        veiculos.remove(veiculo);
+    }
 }

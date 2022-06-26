@@ -5,6 +5,7 @@ import modelo.Peca;
 import modelo.Veiculo;
 import vista.MenuAux;
 import vista.clientes.JanelaClientes;
+import vista.pecas.DadosPeca;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,9 @@ public class JanelaVeiculos extends JFrame{
     private JButton eliminarButton;
     private JButton registarVeiculoButton;
     private JList listaDeVeiculos;
+    private Veiculo veiculoSelecionado;
+    private LinkedList<Veiculo> veiculos;
+
     private MenuAux menuAux;
 
     public JanelaVeiculos() {
@@ -50,21 +54,58 @@ public class JanelaVeiculos extends JFrame{
         menuAux.iniciaMenu(menuItems);
         //Lista de veiculos
         DadosApp da = DadosApp.getInstancia();
-        LinkedList<Veiculo> veiculos = da.getVeiculos();
+        veiculos = da.getVeiculos();
 
         DefaultListModel model = new DefaultListModel();
         for (Veiculo v : veiculos) {
             listaDeVeiculos.setModel(model);
             model.addElement("Marca: "+v.getMarca()+"   Modelo: "+v.getModelo());
         }
-        registarVeiculoButton.addActionListener(this::registarVeiculoButton);
+        listaDeVeiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        registarVeiculoButton.addActionListener(this::btnRegistarActionPerformed);
+        consultarButton.addActionListener(this::btnConsultarActionPerformed);
+        editarButton.addActionListener(this::btnEditarActionPerformed);
+        eliminarButton.addActionListener(this::btnEliminarActionPerformed);
 
         pack();
         setVisible(true);
     }
-    private void registarVeiculoButton(ActionEvent e) {
+    private void btnRegistarActionPerformed(ActionEvent e) {
         RegistarVeiculo registarVeiculo = new RegistarVeiculo();
         registarVeiculo.setVisible(true);
     }
+    private void btnConsultarActionPerformed(ActionEvent e){
+        int selected = listaDeVeiculos.getSelectedIndex();
+        if(selected < 0) {
+            return;
+        }
+        veiculoSelecionado = veiculos.get(selected);
+        new DadosVeiculo(veiculoSelecionado, false);
+    }
 
+    private void btnEditarActionPerformed(ActionEvent e){
+        int selected = listaDeVeiculos.getSelectedIndex();
+        if(selected < 0) {
+            return;
+        }
+        veiculoSelecionado = veiculos.get(selected);
+        new DadosVeiculo(veiculoSelecionado, true);
+    }
+    private void btnEliminarActionPerformed(ActionEvent e){
+        if(listaDeVeiculos.getSelectedIndex() >= 0) {
+            int result = JOptionPane.showConfirmDialog(new JFrame(), "Pretende eliminar esta peça ?");
+            if (result == 0) {
+                //Sim
+                if (listaDeVeiculos.getSelectedIndex() >= 0) {
+                    DadosApp.getInstancia().removerVeiculo(veiculos.get(listaDeVeiculos.getSelectedIndex()));
+                    dispose();
+                }
+            }
+            if (result >= 1) {
+                //Não
+                dispose();
+            }
+        }
+    }
 }

@@ -1,5 +1,8 @@
 package vista.eventos;
 
+import modelo.DadosApp;
+import modelo.Evento;
+import modelo.Veiculo;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -18,6 +21,14 @@ public class JanelaEventos extends JFrame {
     private JButton btnArmazens;
     private JButton btnTransportes;
     private JButton btnEstatisticas;
+    private JPanel painelEventos1;
+    private JPanel painelEventos2;
+    private JList listaDeEventos;
+    private JButton consultarButton;
+    private JButton editarButton;
+    private JButton eliminarButton;
+    private JButton registarEvento;
+    private LinkedList<Evento> eventos;
     private MenuAux menuAux;
 
     public JanelaEventos() {
@@ -37,6 +48,15 @@ public class JanelaEventos extends JFrame {
         menuItems.add(btnTransportes);
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
+        //Lista de eventos
+        DadosApp da = DadosApp.getInstancia();
+        eventos = da.getEventos();
+
+        DefaultListModel model = new DefaultListModel();
+        for (Evento e : eventos) {
+            listaDeEventos.setModel(model);
+            //model.addElement("Filial: "+e.get+"   Modelo: "+v.getModelo());
+        }
         pack();
         setVisible(true);
     }
