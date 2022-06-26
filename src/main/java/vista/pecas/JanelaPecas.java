@@ -70,6 +70,7 @@ public class JanelaPecas extends JFrame {
         consultarButton.addActionListener(this::btnConsultarActionPerformed);
         editarButton.addActionListener(this::btnEditarActionPerformed);
         registarPeçaButton.addActionListener(this::btnRegistarActionPerformed);
+        eliminarButton.addActionListener(this::btnEliminarActionPerformed);
 
 
         pack();
@@ -96,5 +97,21 @@ public class JanelaPecas extends JFrame {
     }
     private void btnRegistarActionPerformed(ActionEvent e){
         new RegistarPeca();
+    }
+    private void btnEliminarActionPerformed(ActionEvent e){
+        if(listaDePecas.getSelectedIndex() >= 0) {
+            int result = JOptionPane.showConfirmDialog(new JFrame(), "Pretende eliminar esta peça ?");
+            if (result == 0) {
+                //Sim
+                if (listaDePecas.getSelectedIndex() >= 0) {
+                    DadosApp.getInstancia().removerPeca(pecas.get(listaDePecas.getSelectedIndex()));
+                    dispose();
+                }
+            }
+            if (result >= 1) {
+                //Não
+                dispose();
+            }
+        }
     }
 }
