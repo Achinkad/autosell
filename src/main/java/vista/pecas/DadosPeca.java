@@ -100,7 +100,7 @@ public class DadosPeca extends JDialog {
             Erros.mostrarErro(this,1,Erros.removeLastChar(lblMarca.getText()));
             return;
         }
-        if(!textPreco.getText().matches("\\d{1,5}.\\d{1,2}")){
+        if(!textPreco.getText().matches("\\d{1,5}.\\d{0,2}")){
             Erros.mostrarErro(this,4,Erros.removeLastChar(lblPreco.getText()));
             return;
         }
