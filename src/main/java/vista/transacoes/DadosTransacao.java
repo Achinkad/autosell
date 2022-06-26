@@ -51,8 +51,13 @@ public class DadosTransacao extends JDialog {
         editarButton.setVisible(false);
         cancelarButton.setVisible(false);
 
-        //TODO preencher campos
         textField1.setText(Float.toString(transacao.getValor()));
+
+        if(transacao.getTipoTransacao() == TipoTransacao.DEBITO) {
+            comboBox1.setSelectedIndex(0);
+        }else{
+            comboBox1.setSelectedIndex(1);
+        }
 
         DefaultListModel modelV = new DefaultListModel();
         LinkedList<Veiculo> vl = new LinkedList<>();
@@ -92,7 +97,6 @@ public class DadosTransacao extends JDialog {
         }
 
         transacaoPresente = transacao;
-
         if(isEditavel) {
             editarButton.setVisible(true);
             cancelarButton.setVisible(true);
@@ -108,6 +112,12 @@ public class DadosTransacao extends JDialog {
         transacaoPresente.setValor(Float.parseFloat(textField1.getText()));
         transacaoPresente.setCliente(DadosApp.getInstancia().getClientes().get(list2.getSelectedIndex()));
         transacaoPresente.setVeiculo(DadosApp.getInstancia().getVeiculos().get(list1.getSelectedIndex()));
+        if(comboBox1.getSelectedIndex() == 0){
+            transacaoPresente.setTipoTransacao(TipoTransacao.DEBITO);
+        }
+        if(comboBox1.getSelectedIndex() == 1){
+            transacaoPresente.setTipoTransacao(TipoTransacao.CREDITO);
+        }
         dispose();
     }
 
