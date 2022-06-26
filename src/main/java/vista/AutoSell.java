@@ -58,7 +58,7 @@ public class AutoSell extends JFrame {
         Cliente c = new Cliente("Titi",12343,"asas",123344,"ola",null);
         Cliente z = new Cliente("Manel",12343,"asas",123344,"ola",null);
         Veiculo v = new Veiculo("123455","OLA","OLA","AZUL",123,"ASDDS",z,null,"asd");
-
+        Filial f= new Filial(null,null,false,"as","as","as",12,null);
         Oficina oficina = new Oficina("Mille", 911222333, "mille@oficina.com", "Marco", 919333777);
 
         DadosApp.getInstancia().addPeca(p);
@@ -67,8 +67,7 @@ public class AutoSell extends JFrame {
         DadosApp.getInstancia().addCLiente(c);
 
         DadosApp.getInstancia().inserirOficina(oficina);
-
-        Erros.mostrarErro(this, 1);
+        DadosApp.getInstancia().addFilial(f);
     }
 
     public static void main(String[] args) {

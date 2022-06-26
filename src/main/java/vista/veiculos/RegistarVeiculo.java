@@ -64,7 +64,7 @@ public class RegistarVeiculo extends JDialog {
         AnteriorDono.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Value: " + AnteriorDono.getSelectedItem().toString());
+
                 anteriorDonoBack=AnteriorDono.getSelectedItem().toString();
             }
         });

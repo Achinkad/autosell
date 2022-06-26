@@ -94,7 +94,7 @@ public class JanelaVeiculos extends JFrame{
     }
     private void btnEliminarActionPerformed(ActionEvent e){
         if(listaDeVeiculos.getSelectedIndex() >= 0) {
-            int result = JOptionPane.showConfirmDialog(new JFrame(), "Pretende eliminar esta peça ?");
+            int result = JOptionPane.showConfirmDialog(new JFrame(), "Pretende eliminar este veiculo ?");
             if (result == 0) {
                 //Sim
                 if (listaDeVeiculos.getSelectedIndex() >= 0) {
