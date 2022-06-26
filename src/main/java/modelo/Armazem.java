@@ -6,4 +6,8 @@ public class Armazem {
     private String nome;
     private int telefone;
     private LinkedList<PecasArmazem> pecas;
+
+    public String getNome() {
+        return nome;
+    }
 }

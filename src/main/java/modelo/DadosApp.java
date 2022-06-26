@@ -102,7 +102,24 @@ public class DadosApp {
     public LinkedList<Transacao> getTransacoes() {
         return new LinkedList<>(transacoes);
     }
+
     public void addPeca(Peca peca){
         pecas.add(peca);
+    }
+
+    public void inserirFilial(Filial filial) {
+        filiais.add(filial);
+    }
+
+    public void inserirCliente(Cliente cliente) {
+        clientes.add(cliente);
+    }
+
+    public void inserirVeiculo(Veiculo veiculo) {
+        veiculos.add(veiculo);
+    }
+
+    public void removerFilial(Filial filial) {
+        filiais.remove(filial);
     }
 }

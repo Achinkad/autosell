@@ -1,7 +1,6 @@
 package vista;
 
-import modelo.DadosApp;
-import modelo.Peca;
+import modelo.*;
 import vista.armazens.JanelaArmazens;
 import vista.clientes.JanelaClientes;
 import vista.estatisticas.JanelaEstatisticas;
@@ -54,7 +53,10 @@ public class AutoSell extends JFrame {
         pack();
 
         Peca p = new Peca("ref","Chinês",800,"desc","BMW","15");
+        Veiculo veiculo = new Veiculo("AA-AA-AA", "Volvo", "V40", "Azul", 200000, "Muito bonito.", null, null);
+
         DadosApp.getInstancia().addPeca(p);
+        DadosApp.getInstancia().inserirVeiculo(veiculo);
         //m.out.println("Peca Ref-> "+DadosApp.getInstancia().getPecas().get(0)+"ref p-> "+p);
     }
 
