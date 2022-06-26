@@ -300,7 +300,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="e21d5" class="javax.swing.JLabel">
+                  <component id="e21d5" class="javax.swing.JLabel" binding="lblNome">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -316,7 +316,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="29b2e" class="javax.swing.JLabel">
+                  <component id="29b2e" class="javax.swing.JLabel" binding="lblTelefone">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -332,7 +332,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="a0a90" class="javax.swing.JLabel">
+                  <component id="a0a90" class="javax.swing.JLabel" binding="lblContribuinte">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -364,7 +364,7 @@
                       <text value="Cancelar"/>
                     </properties>
                   </component>
-                  <component id="2bc21" class="javax.swing.JLabel">
+                  <component id="2bc21" class="javax.swing.JLabel" binding="lblMorada">
                     <constraints>
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -380,12 +380,12 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="27522" class="javax.swing.JLabel">
+                  <component id="27522" class="javax.swing.JLabel" binding="lblEmail">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="e-mail:"/>
+                      <text value="lblEmail"/>
                     </properties>
                   </component>
                   <component id="27e87" class="javax.swing.JTextField" binding="textEmails">

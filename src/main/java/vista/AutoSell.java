@@ -53,7 +53,7 @@ public class AutoSell extends JFrame {
         menuAux.iniciaMenu(menuItems);
         pack();
 
-        Peca p = new Peca("ref","Chinês",800,"desc","BMW","15");
+        Peca p = new Peca("ref","Chinês",800,"desc","BMW","15","Oleo");
         Cliente c = new Cliente("Titi",12343,"asas",123344,"ola",null);
         Cliente z = new Cliente("Manel",12343,"asas",123344,"ola",null);
         Veiculo v = new Veiculo("123455","OLA","OLA","AZUL",123,"ASDDS",z,null,"asd");

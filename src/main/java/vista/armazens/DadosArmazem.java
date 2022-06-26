@@ -3,6 +3,7 @@ package vista.armazens;
 import modelo.Armazem;
 import modelo.DadosApp;
 import modelo.Peca;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -28,6 +29,10 @@ public class DadosArmazem extends JDialog {
     private JPanel painelArmazens;
     private JButton editarButton;
     private JButton cancelarButton;
+    private JLabel lblNome;
+    private JLabel lblTelefone;
+    private JLabel lblPecas;
+    private JLabel lblQpecas;
     private MenuAux menuAux;
     private Armazem armazemPresente;
     private LinkedList<Peca> todasAsPecas;
@@ -83,6 +88,8 @@ public class DadosArmazem extends JDialog {
         textField1.setText(Integer.toString(armazem.getPecas().size()));
 
         if(isEditavel) {
+            textField1.setVisible(false);
+            lblQpecas.setVisible(false);
             editarButton.setVisible(true);
             cancelarButton.setVisible(true);
             editarButton.addActionListener(this::btnEditarActionPerformed);
@@ -94,15 +101,32 @@ public class DadosArmazem extends JDialog {
     }
 
     private void btnEditarActionPerformed(ActionEvent e){
-        armazemPresente.setNome(textNome.getText());
-        armazemPresente.setTelefone(Integer.parseInt(textTelefone.getText()));
-
         LinkedList<Peca> pecasDoArmazem = armazemPresente.getPecas();
         int i = 0;
         int[] indices = list1.getSelectedIndices();
         for (int selectedIndex : indices) {
             pecasDoArmazem.add(todasAsPecas.get(selectedIndex-1));
         }
+        if(textNome.getText().length() < 2 || textNome.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblNome.getText()));
+            return;
+        }
+        if(!textTelefone.getText().matches("\\d{9}")){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblTelefone.getText()));
+            return;
+        }
+        if(pecasDoArmazem.size() <= 0){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblPecas.getText()));
+            return;
+        }
+        if(pecasDoArmazem.size() <= 0 || !Integer.toString(pecasDoArmazem.size()).matches("\\d{1,10000}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblQpecas.getText()));
+            return;
+        }
+
+        armazemPresente.setNome(textNome.getText());
+        armazemPresente.setTelefone(Integer.parseInt(textTelefone.getText()));
+
         armazemPresente.setPecas(pecasDoArmazem);
         armazemPresente.setQuantidadePeças(pecasDoArmazem.size());
         dispose();

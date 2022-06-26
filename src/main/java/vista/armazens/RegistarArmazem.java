@@ -3,6 +3,7 @@ package vista.armazens;
 import modelo.Armazem;
 import modelo.DadosApp;
 import modelo.Peca;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -28,6 +29,9 @@ public class RegistarArmazem extends JDialog {
     private JPanel painelPrincipal;
     private JButton adicionarButton;
     private JButton cancelarButton;
+    private JLabel lblNome;
+    private JLabel lblTelefone;
+    private JLabel lblPecas;
 
     private MenuAux menuAux;
 
@@ -73,6 +77,23 @@ public class RegistarArmazem extends JDialog {
         int[] indices = list1.getSelectedIndices();
         for (int selectedIndex : indices) {
             pecasDoArmazem.add(pecasParaOArmazem.get(selectedIndex));
+        }
+
+        if(textNome.getText().length() < 2 || textNome.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblNome.getText()));
+            return;
+        }
+        if(!textTelefone.getText().matches("\\d{9}")){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblTelefone.getText()));
+            return;
+        }
+        if(pecasDoArmazem.size() <= 0){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblPecas.getText()));
+            return;
+        }
+        if(pecasDoArmazem.size() <= 0 || !Integer.toString(pecasDoArmazem.size()).matches("\\d{1,10000}")){
+            Erros.mostrarErro(this,4,"Quantidade de Peças ");
+            return;
         }
 
         DadosApp.getInstancia().addArmazem(new Armazem(textNome.getText(),Integer.parseInt(textTelefone.getText()),pecasDoArmazem,pecasDoArmazem.size()));

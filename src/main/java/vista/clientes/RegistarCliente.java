@@ -1,6 +1,7 @@
 package vista.clientes;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -29,6 +30,12 @@ public class RegistarCliente extends JDialog {
     private JTextField textEmails;
     private JTextField textMorada;
     private JTextField textContribuinte;
+    private JLabel lblNome;
+    private JPanel lblTelefone;
+    private JLabel lblEmail;
+    private JLabel lblContribuinte;
+    private JLabel lblMorada;
+    private JLabel lblTel;
 
     private MenuAux menuAux;
 
@@ -62,6 +69,26 @@ public class RegistarCliente extends JDialog {
     }
 
     private void btnAdicionarActionPerformed(ActionEvent e){
+        if(textNome.getText().length() < 2 || textNome.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblNome.getText()));
+            return;
+        }
+        if(!textContribuinte.getText().matches("\\d{9}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblContribuinte.getText()));
+            return;
+        }
+        if(textMorada.getText().length() < 2 || textMorada.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblMorada.getText()));
+            return;
+        }
+        if(!textTelefone.getText().matches("\\d{9}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblTel.getText()));
+            return;
+        }
+        if(!Erros.validate(textEmails.getText())){
+            Erros.mostrarErro(this,6," ");
+            return;
+        }
         DadosApp.getInstancia().addCLiente(new Cliente(textNome.getText(),Integer.parseInt(textContribuinte.getText()),textMorada.getText(),Integer.parseInt(textTelefone.getText()),textEmails.getText(),new FichaCliente()));
         dispose();
     }

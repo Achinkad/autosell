@@ -1,6 +1,7 @@
 package vista.pecas;
 
 import modelo.Peca;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -24,10 +25,18 @@ public class DadosPeca extends JDialog {
     private JTextField textMarca;
     private JTextField textPreco;
     private JTextField textMaV;
-    private JTextArea textDescricao;
+    private JTextArea textDescrição;
     private JTextField textMoV;
     private JButton editarButton;
     private JButton cancelarButton;
+    private JLabel lblDescricao;
+    private JLabel lblReferencia;
+    private JLabel lblPreco;
+    private JLabel lblMarca;
+    private JTextField textDesignação;
+    private JLabel lblDesignacao;
+    private JLabel lblmav;
+    private JLabel lblmov;
 
     private MenuAux menuAux;
 
@@ -56,7 +65,8 @@ public class DadosPeca extends JDialog {
         editarButton.setVisible(false);
         cancelarButton.setVisible(false);
 
-        textDescricao.setText(peca.getDescricao());
+        textDesignação.setText(peca.getDesignacao());
+        textDescrição.setText(peca.getDescricao());
         textMarca.setText(peca.getMarca());
         textPreco.setText(peca.getPreco()+"");
         textReferencia.setText(peca.getReferencia());
@@ -77,7 +87,37 @@ public class DadosPeca extends JDialog {
     }
 
     private void btnEditarActionListener(ActionEvent e){
-        pecaPresente.setDescricao(textDescricao.getText());
+
+        if(textDesignação.getText().length() < 2 || textDesignação.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblDesignacao.getText()));
+            return;
+        }
+        if(textReferencia.getText().length() < 2 || textReferencia.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblReferencia.getText()));
+            return;
+        }
+        if(textMarca.getText().length() < 2 || textMarca.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblMarca.getText()));
+            return;
+        }
+        if(!textPreco.getText().matches("\\d{1,5}.\\d{1,2}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblPreco.getText()));
+            return;
+        }
+        if(textDescrição.getText().length() < 2 || textDescrição.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblDescricao.getText()));
+            return;
+        }
+        if(textMaV.getText().length() < 2 || textMaV.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblmav.getText()));
+            return;
+        }
+        if(textMoV.getText().length() < 2 || textMoV.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblmov.getText()));
+            return;
+        }
+        pecaPresente.setDesignacao(textDescrição.getText());
+        pecaPresente.setDescricao(textDescrição.getText());
         pecaPresente.setMarca(textMarca.getText());
         pecaPresente.setMarcaVeiculo(textMaV.getText());
         pecaPresente.setModeloVeiculo(textMoV.getText());

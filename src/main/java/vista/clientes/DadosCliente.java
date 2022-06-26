@@ -2,6 +2,7 @@ package vista.clientes;
 
 import modelo.Cliente;
 import modelo.FichaCliente;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -30,6 +31,11 @@ public class DadosCliente extends JDialog {
     private JTextField textEmails;
     private JTextField textMorada;
     private JTextField textContribuinte;
+    private JLabel lblNome;
+    private JLabel lblTelefone;
+    private JLabel lblContribuinte;
+    private JLabel lblMorada;
+    private JLabel lblEmail;
     private MenuAux menuAux;
 
     private Cliente clientePresente;
@@ -64,14 +70,6 @@ public class DadosCliente extends JDialog {
         textContribuinte.setText(Integer.toString(cliente.getTelefone()));
         textMorada.setText(cliente.getMorada());
 
-        /*TODO Preencher atributos do modelo
-        *  Fazer a vista de criar Cliente
-        *         * remover
-        *         * editar
-        *         * eliminar */
-
-
-
 
         if(isEditavel) {
             editarButton.setVisible(true);
@@ -85,6 +83,26 @@ public class DadosCliente extends JDialog {
     }
 
     private void btnEditarActionPerformed(ActionEvent e){
+        if(textNome.getText().length() < 2 || textNome.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblNome.getText()));
+            return;
+        }
+        if(!textContribuinte.getText().matches("\\d{9}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblContribuinte.getText()));
+            return;
+        }
+        if(textMorada.getText().length() < 2 || textMorada.getText().length() > 255){
+            Erros.mostrarErro(this,1,Erros.removeLastChar(lblMorada.getText()));
+            return;
+        }
+        if(!textTelefone.getText().matches("\\d{9}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblTelefone.getText()));
+            return;
+        }
+        if(!Erros.validate(textEmails.getText())){
+            Erros.mostrarErro(this,6," ");
+            return;
+        }
         clientePresente.setNome(textNome.getText());
         clientePresente.setTelefone(Integer.parseInt(textTelefone.getText()));
         clientePresente.setContribuinte(Integer.parseInt(textContribuinte.getText()));
