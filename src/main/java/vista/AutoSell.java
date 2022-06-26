@@ -16,9 +16,7 @@ import vista.veiculos.JanelaVeiculos;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class AutoSell extends JFrame {
     private JPanel painelPrincipal;
@@ -60,12 +58,13 @@ public class AutoSell extends JFrame {
         Veiculo v = new Veiculo("123455","OLA","OLA","AZUL",123,"ASDDS",z,null,"asd");
         Filial f= new Filial(null,null,false,"as","as","as",12,null);
         Oficina oficina = new Oficina("Mille", 911222333, "mille@oficina.com", "Marco", 919333777);
+        Reparacao reparacao = new Reparacao(TipoReparacao.MUDANCA_PECAS, v, oficina, "muito trabalho", "22-12-2022", "22-12-2022", "muitos", null);
 
         DadosApp.getInstancia().addPeca(p);
         DadosApp.getInstancia().addVeiculo(v);
         DadosApp.getInstancia().addCLiente(z);
         DadosApp.getInstancia().addCLiente(c);
-
+        DadosApp.getInstancia().inserirReparacao(reparacao);
         DadosApp.getInstancia().inserirOficina(oficina);
         DadosApp.getInstancia().addFilial(f);
     }

@@ -167,4 +167,8 @@ public class DadosApp {
     public void removerEvento(Evento evento) {
         eventos.remove(evento);
     }
+
+    public void inserirReparacao(Reparacao reparacao) {
+        reparacaos.add(reparacao);
+    }
 }
