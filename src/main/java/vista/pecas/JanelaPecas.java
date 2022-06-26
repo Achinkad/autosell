@@ -59,7 +59,7 @@ public class JanelaPecas extends JFrame {
         DefaultListModel model = new DefaultListModel();
         for (Peca p : pecas) {
             listaDePecas.setModel(model);
-            model.addElement("Descrição: "+p.getDescricao()+"   Marca: "+p.getMarca()+"     Modelo: "+p.getModeloVeiculo()+"   Preço: "+p.getPreco());
+            model.addElement("Designação: "+p.getDesignacao()+"   Marca: "+p.getMarca()+"     Modelo: "+p.getModeloVeiculo()+"   Preço: "+p.getPreco());
         }
 
 
@@ -88,7 +88,6 @@ public class JanelaPecas extends JFrame {
 
     private void btnEditarActionPerformed(ActionEvent e){
         int selected = listaDePecas.getSelectedIndex();
-        //System.out.println(selected+"");
         if(selected < 0) {
             return;
         }

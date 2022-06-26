@@ -6,16 +6,18 @@ public class Peca extends Item {
     private String marca;
     private float preco;
     private String descricao;
+    private String designacao;
     private String marcaVeiculo;
     private String modeloVeiculo;
 
-    public Peca(String referencia, String marca, float preco, String descricao, String marcaVeiculo, String modeloVeiculo) {
+    public Peca(String referencia, String marca, float preco, String descricao, String marcaVeiculo, String modeloVeiculo, String designacao) {
         this.referencia = referencia;
         this.marca = marca;
         this.preco = preco;
         this.descricao = descricao;
         this.marcaVeiculo = marcaVeiculo;
         this.modeloVeiculo = modeloVeiculo;
+        this.designacao = designacao;
     }
 
     public String getReferencia() {
@@ -64,5 +66,13 @@ public class Peca extends Item {
 
     public void setModeloVeiculo(String modeloVeiculo) {
         this.modeloVeiculo = modeloVeiculo;
+    }
+
+    public String getDesignacao() {
+        return designacao;
+    }
+
+    public void setDesignacao(String designacao) {
+        this.designacao = designacao;
     }
 }
