@@ -1,5 +1,7 @@
 package modelo;
 
+import vista.Erros;
+
 import java.util.LinkedList;
 
 public class Filial extends Local {
@@ -42,15 +44,7 @@ public class Filial extends Local {
         return sede;
     }
 
-    public void setSede(Filial filial, boolean sede) {
-        LinkedList<Filial> filiais = DadosApp.getInstancia().getFiliais();
-
-        for (Filial f : filiais) {
-            if (f.isSede() && !f.equals(filial)) {
-                throw new RuntimeException();
-            }
-        }
-
+    public void setSede(boolean sede) {
         this.sede = sede;
     }
 }
