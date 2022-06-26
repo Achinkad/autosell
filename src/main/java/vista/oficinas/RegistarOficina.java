@@ -3,6 +3,8 @@ package vista.oficinas;
 import modelo.DadosApp;
 import modelo.Filial;
 import modelo.Oficina;
+import vista.AutoSell;
+import vista.Erros;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -40,6 +42,10 @@ public class RegistarOficina extends JDialog {
     }
 
     private void btnRegistarActionPerformed(ActionEvent e) {
+        if (textNome.getText().length() < 2 || textNome.getText().length() > 255) {
+            Erros.mostrarErro(this, 1);
+        }
+
         DadosApp.getInstancia().inserirOficina(
                 new Oficina(
                         textNome.getText(),
