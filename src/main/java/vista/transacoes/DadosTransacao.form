@@ -361,7 +361,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="a08a3" class="javax.swing.JList" binding="list1" default-binding="true">
+                      <component id="f7da5" class="javax.swing.JList" binding="list2" default-binding="true">
                         <constraints/>
                         <properties/>
                       </component>
@@ -382,7 +382,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="f7da5" class="javax.swing.JList" binding="list2" default-binding="true">
+                      <component id="a08a3" class="javax.swing.JList" binding="list1" default-binding="true">
                         <constraints/>
                         <properties/>
                       </component>
