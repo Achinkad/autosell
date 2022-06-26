@@ -3,6 +3,7 @@ package vista.transportes;
 import modelo.DadosApp;
 import modelo.Local;
 import modelo.Transporte;
+import vista.Erros;
 import vista.MenuAux;
 import modelo.Date;
 
@@ -104,16 +105,28 @@ public class DadosTransporte extends JDialog{
         Date dateExpedicao= new Date((Integer)dataInicio.getValue(),(Integer)mesInicio.getValue(),(Integer)anoInicio.getValue());
         Date dataEntrega= new Date((Integer)dataFim.getValue(),(Integer)mesFim.getValue(),(Integer)anoFim.getValue());
 
-        transportePresente.setDataEntrega(dataEntrega);
-        transportePresente.setDataExpedicao(dateExpedicao);
+
         int selectedFilial = listaLocais.getSelectedIndex();
         if(selectedFilial < 0) {
             return;
         }
         localSelecionado= locais.get(selectedFilial);
-        transportePresente.setLocalEntrega(localSelecionado);
+        if (dateExpedicao == null || dateExpedicao.getDia() > 31 || dateExpedicao.getMes() > 12 || dateExpedicao.getAno() > 1900) {
+            Erros.mostrarErro(this, 10, Erros.removeLastChar(dateExpedicao.getData()));
 
-        dispose();
+            if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() > 1900 || dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000 > dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000) {
+                Erros.mostrarErro(this, 12, Erros.removeLastChar(dataEntrega.getData()));
+                return;
+            }
+        }else {
+
+            transportePresente.setDataEntrega(dataEntrega);
+            transportePresente.setDataExpedicao(dateExpedicao);
+
+            transportePresente.setLocalEntrega(localSelecionado);
+
+            dispose();
+        }
     }
     private void btnCancelarActionListener(ActionEvent e){
         dispose();

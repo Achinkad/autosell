@@ -1,6 +1,7 @@
 package vista.eventos;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -106,20 +107,55 @@ public class DadosEvento extends JDialog{
     private void btnEditarActionListener(ActionEvent e){
         Date dateInicio= new Date((Integer)dataInicio.getValue(),(Integer)mesInicio.getValue(),(Integer)anoInicio.getValue());
         Date dateFim= new Date((Integer)dataFim.getValue(),(Integer)mesFim.getValue(),(Integer)anoFim.getValue());
-        eventoPresente.setDesignacao(designacao.getText());
-        eventoPresente.setLocalizacao(localizacao.getText());
-        eventoPresente.setMorada(morada.getText());
-        eventoPresente.setNumMaxVeiuclos((Integer)nMaxVeiculos.getValue());
-        eventoPresente.setDataInicio(dateInicio);
-        eventoPresente.setDateFim(dateFim);
+        String designacaoA=designacao.getText();
+        String localizacaoA = localizacao.getText();
+        String moradaA=morada.getText();
+        int maxVeiculo=(Integer)nMaxVeiculos.getValue();
         int selectedFilial = listaFiliais.getSelectedIndex();
         if(selectedFilial < 0) {
             return;
         }
         filialSelecionada = filiais.get(selectedFilial);
-        eventoPresente.setFilial(filialSelecionada);
+        if (filialSelecionada==null){
+            Erros.mostrarErro(this, 2, Erros.removeLastChar(filialSelecionada.getDesignacao()));
 
-        dispose();
+            if (localizacaoA.isEmpty() || localizacaoA.length()<2 || localizacaoA.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(localizacaoA));
+
+
+            }else if(moradaA.isEmpty() || moradaA.length()<2 || moradaA.length()>255){
+                Erros.mostrarErro(this, 1, Erros.removeLastChar(moradaA));
+
+            } else if (maxVeiculo>=0 || maxVeiculo>500) {
+                Erros.mostrarErro(this,9,Erros.removeLastChar(String.valueOf(maxVeiculo)));
+
+            } else if (dateInicio==null || dateInicio.getDia()>31 || dateInicio.getMes()>12 || dateInicio.getAno()>1900) {
+                Erros.mostrarErro(this, 10, Erros.removeLastChar(dateInicio.getData()));
+
+
+            } else if (dateFim==null || dateInicio.getDia()>31 || dateInicio.getMes()>12 || dateInicio.getAno()>1900 || dateInicio.getDia()*100000000+dateInicio.getMes()*1000000+dateInicio.getAno()*10000>dateFim.getDia()*100000000+dateFim.getMes()*1000000+dateFim.getAno()*10000) {
+                Erros.mostrarErro(this, 11, Erros.removeLastChar(dateFim.getData()));
+
+            }
+        }else {
+            eventoPresente.setDesignacao(designacaoA);
+            eventoPresente.setLocalizacao(localizacaoA);
+            eventoPresente.setMorada(moradaA);
+            eventoPresente.setNumMaxVeiuclos(maxVeiculo);
+            eventoPresente.setDataInicio(dateInicio);
+            eventoPresente.setDateFim(dateFim);
+            eventoPresente.setFilial(filialSelecionada);
+            dispose();
+        }
+
+
+
+
+
+
+
+
+
     }
     private void btnCancelarActionListener(ActionEvent e){
         dispose();

@@ -17,7 +17,7 @@ import vista.veiculos.JanelaVeiculos;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
+import java.util.LinkedList;
 
 public class AutoSell extends JFrame {
     private JPanel painelPrincipal;

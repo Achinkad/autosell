@@ -1,6 +1,7 @@
 package vista.transportes;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -52,6 +53,8 @@ public class RegistarTransporte extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         menuAux = new MenuAux();
         LinkedList<JButton> menuItems = new LinkedList<>();
+        pecasSelecionadas = new LinkedList<>();
+        veiculosSelecionados = new LinkedList<>();
         transportesSelecionados = new LinkedList<>();
         menuItems.add(btnVeiculos);
         menuItems.add(btnClientes);
@@ -125,39 +128,48 @@ public class RegistarTransporte extends JDialog {
 
         private void btnAdicionarActionPerformed(ActionEvent e) {
             System.out.println(anoExpedicao.getValue());
-            Date dataExpedicao= new Date((Integer)diaExpedicao.getValue(),(Integer)mesExpedicao.getValue(),(Integer)anoExpedicao.getValue());
-            Date dataEntrega= new Date((Integer)diaEntrega.getValue(),(Integer)mesEntrega.getValue(),(Integer)mesEntrega.getValue());
+            Date dataExpedicao = new Date((Integer) diaExpedicao.getValue(), (Integer) mesExpedicao.getValue(), (Integer) anoExpedicao.getValue());
+            Date dataEntrega = new Date((Integer) diaEntrega.getValue(), (Integer) mesEntrega.getValue(), (Integer) mesEntrega.getValue());
             int selectedLocal = listaLocais.getSelectedIndex();
-            if(selectedLocal < 0) {
+            if (selectedLocal < 0) {
                 return;
             }
             localSelecionado = locais.get(selectedLocal);
-            if(veiculoCheckBox.isSelected()) {
-                int [] selectedVeiculos = listaItems.getSelectedIndices();
-                if (selectedVeiculos.length<0){
+            if (dataExpedicao == null || dataExpedicao.getDia() > 31 || dataExpedicao.getMes() > 12 || dataExpedicao.getAno() > 1900) {
+                Erros.mostrarErro(this, 10, Erros.removeLastChar(dataExpedicao.getData()));
+
+                if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() > 1900 || dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000 > dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000) {
+                    Erros.mostrarErro(this, 12, Erros.removeLastChar(dataEntrega.getData()));
                     return;
                 }
-                for (int i: selectedVeiculos) {
-                    veiculosSelecionados.add(veiculos.get(i));
+
+            } else {
+                if (veiculoCheckBox.isSelected()) {
+                    int[] selectedVeiculos = listaItems.getSelectedIndices();
+                    if (selectedVeiculos.length < 0) {
+                        return;
+                    }
+                    for (int i : selectedVeiculos) {
+                        veiculosSelecionados.add(veiculos.get(i));
+                    }
+                    DadosApp.getInstancia().addTransporte(new TransporteVeiculo(veiculosSelecionados, dataExpedicao, dataEntrega, localSelecionado));
+                    dispose();
                 }
-                DadosApp.getInstancia().addTransporte(new TransporteVeiculo(veiculosSelecionados, dataExpedicao, dataEntrega, localSelecionado));
+                if (pecaCheckBox.isSelected()) {
+                    int[] selectedPecas = listaItems.getSelectedIndices();
+                    if (selectedPecas.length < 0) {
+                        return;
+                    }
+                    for (int i : selectedPecas) {
+                        pecasSelecionadas.add(pecas.get(i));
+                    }
+                    DadosApp.getInstancia().addTransporte(new TransportePeca(pecasSelecionadas, dataExpedicao, dataEntrega, localSelecionado));
+                    dispose();
+                }
             }
-            if(pecaCheckBox.isSelected()){
-                int [] selectedPecas = listaItems.getSelectedIndices();
-                if (selectedPecas.length<0){
-                    return;
-                }
-                for (int i: selectedPecas) {
-                    pecasSelecionadas.add(pecas.get(i));
-                }
-                DadosApp.getInstancia().addTransporte(new TransportePeca(pecasSelecionadas, dataExpedicao, dataEntrega, localSelecionado));
-
-            }
-
-
-
-            dispose();
         }
+
+
 
         private void btnCancelarActionPerformed(ActionEvent e) {
             dispose();
