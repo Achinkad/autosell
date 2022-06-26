@@ -1,6 +1,7 @@
 package vista.filiais;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -30,6 +31,14 @@ public class DadosFilial extends JDialog {
     private JRadioButton cbSede;
     private JList listArmazens;
     private JPanel painelPrincipal;
+    private JLabel lbDesignacao;
+    private JLabel lbLocalizacao;
+    private JLabel lbMorada;
+    private JLabel lbNumVeiculos;
+    private JLabel lbSede;
+    private JLabel lbVeiculos;
+    private JLabel lbArmazens;
+    private JLabel lbOficinas;
 
     private MenuAux menuAux;
 
@@ -106,32 +115,61 @@ public class DadosFilial extends JDialog {
     }
 
     private void btnEditarActionListener(ActionEvent e) {
-        // Oficinas selecionados
-        int[] indicesOficina = listOficinas.getSelectedIndices();
-        for (int selectedIndex : indicesOficina) {
-            oficinasSelecionadas.add(oficinas.get(selectedIndex));
-        }
+        String designacao = textDesignacao.getText();
+        String localizacao = textLocalizacao.getText();
+        String morada = textMorada.getText();
+        int numMaxVeiculos = (textNumMaxVeiculos.getText().isEmpty() ? -1 : Integer.parseInt(textNumMaxVeiculos.getText()));
+        boolean sede = cbSede.isSelected();
 
-        // Veiculos selecionados
-        int[] indicesVeiculo = listVeiculos.getSelectedIndices();
-        for (int selectedIndex : indicesVeiculo) {
-            veiculosSelecionados.add(veiculos.get(selectedIndex));
+        if (designacao.length() < 2 || designacao.length() > 255)
+        {
+            Erros.mostrarErro(this, 1, Erros.removeLastChar(lbDesignacao.getText()));
         }
-
-        // Armazens selecionados
-        int[] indicesArmazem = listArmazens.getSelectedIndices();
-        for (int selectedIndex : indicesArmazem) {
-            armazensSelecionados.add(armazens.get(selectedIndex));
+        else if (localizacao.length() < 2 || localizacao.length() > 255)
+        {
+            Erros.mostrarErro(this, 1, Erros.removeLastChar(lbLocalizacao.getText()));
         }
+        else if (morada.length() < 2 || morada.length() > 255)
+        {
+            Erros.mostrarErro(this, 1, Erros.removeLastChar(lbMorada.getText()));
+        }
+        else if (numMaxVeiculos < 0 || numMaxVeiculos > 100)
+        {
+            Erros.mostrarErro(this, 7, Erros.removeLastChar(lbNumVeiculos.getText()));
+        }
+        else if (Erros.checkSedeEditavel(sede, filialAtual))
+        {
+            Erros.mostrarErro(this, 8, null);
+        }
+        else
+        {
+            // Veiculos selecionados
+            int[] indicesVeiculo = listVeiculos.getSelectedIndices();
+            for (int selectedIndex : indicesVeiculo) {
+                veiculosSelecionados.add(veiculos.get(selectedIndex));
+            }
 
-        filialAtual.setDesignacao(textDesignacao.getText());
-        filialAtual.setLocalizacao(textLocalizacao.getText());
-        filialAtual.setMorada(textMorada.getText());
-        filialAtual.setSede(filialAtual, cbSede.isSelected());
-        filialAtual.setVeiculos(veiculosSelecionados);
-        filialAtual.setArmazens(armazensSelecionados);
-        filialAtual.setOficinas(oficinasSelecionadas);
-        dispose();
+            // Armazens selecionados
+            int[] indicesArmazem = listArmazens.getSelectedIndices();
+            for (int selectedIndex : indicesArmazem) {
+                armazensSelecionados.add(armazens.get(selectedIndex));
+            }
+
+            // Oficinas selecionados
+            int[] indicesOficina = listOficinas.getSelectedIndices();
+            for (int selectedIndex : indicesOficina) {
+                oficinasSelecionadas.add(oficinas.get(selectedIndex));
+            }
+
+            filialAtual.setDesignacao(designacao);
+            filialAtual.setLocalizacao(localizacao);
+            filialAtual.setMorada(morada);
+            filialAtual.setSede(sede);
+            filialAtual.setVeiculos(veiculosSelecionados);
+            filialAtual.setArmazens(armazensSelecionados);
+            filialAtual.setOficinas(oficinasSelecionadas);
+            dispose();
+        }
     }
 
     private void btnCancelarActionListener(ActionEvent e) {

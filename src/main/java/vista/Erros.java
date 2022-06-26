@@ -1,9 +1,12 @@
 package vista;
 
+import modelo.DadosApp;
+import modelo.Filial;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,5 +59,21 @@ public class Erros {
 
     public static String removeLastChar(String label) {
         return label.substring(0, label.length() - 1);
+    }
+
+    public static boolean checkSede(boolean sede) {
+        LinkedList<Filial> filiais = DadosApp.getInstancia().getFiliais();
+        for (Filial f : filiais) {
+            if (f.isSede()) return true;
+        }
+        return false;
+    }
+
+    public static boolean checkSedeEditavel(boolean sede, Filial filial) {
+        LinkedList<Filial> filiais = DadosApp.getInstancia().getFiliais();
+        for (Filial f : filiais) {
+            if (f.isSede() && !f.equals(filial)) return true;
+        }
+        return false;
     }
 }
