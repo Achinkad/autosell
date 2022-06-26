@@ -12,7 +12,7 @@ public class DadosApp {
     private LinkedList<Filial> filiais;
     private LinkedList<Transporte> transportes;
     private LinkedList<Peca> pecas;
-    private LinkedList<PecasArmazem> pecasArmazem;
+    private LinkedList<Peca> pecasArmazem;
     private LinkedList<Armazem> armazens;
     private LinkedList<Oficina> oficinas;
     private LinkedList<Reparacao> reparacaos;
@@ -82,12 +82,20 @@ public class DadosApp {
         pecas.remove(peca);
     }
 
-    public LinkedList<PecasArmazem> getPecasArmazem() {
+    public LinkedList<Peca> getPecasArmazem() {
         return new LinkedList<>(pecasArmazem);
     }
 
     public LinkedList<Armazem> getArmazens() {
         return new LinkedList<>(armazens);
+    }
+
+    public void addArmazem(Armazem armazem){
+        armazens.add(armazem);
+    }
+
+    public void removerPeca(Armazem armazem){
+        armazens.remove(armazem);
     }
 
     public LinkedList<Oficina> getOficinas() {
