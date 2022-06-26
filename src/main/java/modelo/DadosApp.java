@@ -118,10 +118,6 @@ public class DadosApp {
         pecas.add(peca);
     }
 
-    public void inserirFilial(Filial filial) {
-        filiais.add(filial);
-    }
-
     public void inserirCliente(Cliente cliente) {
         clientes.add(cliente);
     }
@@ -130,7 +126,19 @@ public class DadosApp {
         veiculos.add(veiculo);
     }
 
+    public void inserirFilial(Filial filial) {
+        filiais.add(filial);
+    }
+
     public void removerFilial(Filial filial) {
         filiais.remove(filial);
+    }
+
+    public void inserirOficina(Oficina oficina) {
+        oficinas.add(oficina);
+    }
+
+    public void removerOficina(Oficina oficina) {
+        oficinas.remove(oficina);
     }
 }

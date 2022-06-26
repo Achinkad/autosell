@@ -54,10 +54,11 @@ public class AutoSell extends JFrame {
 
         Peca p = new Peca("ref","Chinês",800,"desc","BMW","15");
         Veiculo veiculo = new Veiculo("AA-AA-AA", "Volvo", "V40", "Azul", 200000, "Muito bonito.", null, null);
+        Oficina oficina = new Oficina("Mille", 911222333, "mille@oficina.com", "Marco", 919333777);
 
         DadosApp.getInstancia().addPeca(p);
         DadosApp.getInstancia().inserirVeiculo(veiculo);
-        //m.out.println("Peca Ref-> "+DadosApp.getInstancia().getPecas().get(0)+"ref p-> "+p);
+        DadosApp.getInstancia().inserirOficina(oficina);
     }
 
     public static void main(String[] args) {
