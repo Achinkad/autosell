@@ -1,10 +1,10 @@
 package vista.estatisticas;
 
-import modelo.DadosApp;
-import modelo.Veiculo;
+import modelo.*;
 import vista.MenuAux;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
 public class Lucro extends JDialog{
@@ -22,7 +22,7 @@ public class Lucro extends JDialog{
     private JButton btnEstatisticas;
     private JLabel Lucro;
     private MenuAux menuAux;
-
+    private LinkedList<Transacao> transacoes;
     public Lucro() {
         setContentPane(painelEstatisticas);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -40,11 +40,25 @@ public class Lucro extends JDialog{
         menuItems.add(btnTransportes);
         menuItems.add(btnEstatisticas);
         menuAux.iniciaMenu(menuItems);
-        int ganhos=0;
-        int despesas=0;
-
+        float ganhos=0;
+        float despesas=0;
+        float lucro;
+        DadosApp da = DadosApp.getInstancia();
+        transacoes = da.getTransacoes();
+        DefaultListModel model1 = new DefaultListModel();
+        for (Transacao transacao : transacoes) {
+          if (transacao.getTipoTransacao()== TipoTransacao.CREDITO){
+              ganhos=ganhos+ transacao.getValor();
+          }
+          if (transacao.getTipoTransacao()==TipoTransacao.DEBITO){
+              despesas=despesas+ transacao.getValor();
+          }
+        }
+        lucro=ganhos-despesas;
+        Lucro.setText(lucro+"€");
 
         pack();
         setVisible(true);
+
     }
 }
