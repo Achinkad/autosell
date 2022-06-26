@@ -35,7 +35,6 @@ public class DadosApp {
         this.filiais = new LinkedList<>();
         this.transportes = new LinkedList<>();
         this.pecas = new LinkedList<>();
-        this.pecasArmazem = new LinkedList<>();
         this.armazens = new LinkedList<>();
         this.oficinas = new LinkedList<>();
         this.reparacaos = new LinkedList<>();
@@ -53,6 +52,14 @@ public class DadosApp {
 
     public LinkedList<Cliente> getClientes() {
         return new LinkedList<>(clientes);
+    }
+
+    public void addCLiente(Cliente cliente){
+        clientes.add(cliente);
+    }
+
+    public void removerCliente(Cliente cliente){
+        clientes.remove(cliente);
     }
 
     public LinkedList<FichaCliente> getFichasCliente() {
@@ -143,9 +150,6 @@ public class DadosApp {
     }
     public void addVeiculo(Veiculo veiculo){
         veiculos.add(veiculo);
-    }
-    public void addCLiente(Cliente cliente){
-        clientes.add(cliente);
     }
     public void addEvento(Evento evento){
         eventos.add(evento);
