@@ -308,7 +308,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="1a94f" class="javax.swing.JLabel">
+                  <component id="1a94f" class="javax.swing.JLabel" binding="lblTTransacao">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -316,7 +316,7 @@
                       <text value="Tipo de Transação:"/>
                     </properties>
                   </component>
-                  <component id="11604" class="javax.swing.JLabel">
+                  <component id="11604" class="javax.swing.JLabel" binding="lblValor">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -372,7 +372,7 @@
                       </component>
                     </children>
                   </scrollpane>
-                  <component id="1c452" class="javax.swing.JLabel">
+                  <component id="1c452" class="javax.swing.JLabel" binding="lblCliente">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -393,7 +393,7 @@
                       </component>
                     </children>
                   </scrollpane>
-                  <component id="6e222" class="javax.swing.JLabel">
+                  <component id="6e222" class="javax.swing.JLabel" binding="lblVeiculo">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>

@@ -1,6 +1,7 @@
 package vista.transacoes;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -29,6 +30,10 @@ public class RegistarTransacao extends JDialog {
     private JList listClientes;
     private JList listVeiculos;
     private JComboBox comboBox1;
+    private JLabel lblTTransacao;
+    private JLabel lblValor;
+    private JLabel lblCliente;
+    private JLabel lblVeiculo;
 
     private MenuAux menuAux;
 
@@ -69,6 +74,24 @@ public class RegistarTransacao extends JDialog {
         setVisible(true);
     }
     private void btnAdicionarActionPerformed(ActionEvent e){
+        if(listVeiculos.getSelectedIndex() == -1 ){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblVeiculo.getText()));
+            return;
+        }
+        if(listClientes.getSelectedIndex() == -1 ){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblCliente.getText()));
+            return;
+        }
+        if(!textValor.getText().matches("\\d{1,5}.\\d{0,2}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblValor.getText()));
+            return;
+        }
+
+        if(comboBox1.getSelectedIndex() != 0 && comboBox1.getSelectedIndex() != 1){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblTTransacao.getText()));
+            return;
+        }
+
         DadosApp.getInstancia().addTransacao(new Transacao(DadosApp.getInstancia().getClientes().get(listClientes.getSelectedIndex()),DadosApp.getInstancia().getVeiculos().get(listVeiculos.getSelectedIndex()),Integer.parseInt(textValor.getText())));
         LinkedList<Transacao> transacoes = DadosApp.getInstancia().getTransacoes();
         if(comboBox1.getSelectedIndex() == 0){

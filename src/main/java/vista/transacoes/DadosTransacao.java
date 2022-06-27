@@ -1,6 +1,7 @@
 package vista.transacoes;
 
 import modelo.*;
+import vista.Erros;
 import vista.MenuAux;
 
 import javax.swing.*;
@@ -27,6 +28,10 @@ public class DadosTransacao extends JDialog {
     private JComboBox comboBox1;
     private JList list1;
     private JList list2;
+    private JLabel lblValor;
+    private JLabel lblCliente;
+    private JLabel lblTTransacao;
+    private JLabel lblVeiculo;
     private MenuAux menuAux;
     private Transacao transacaoPresente;
 
@@ -109,6 +114,24 @@ public class DadosTransacao extends JDialog {
     }
 
     private void btnEditarActionPerformed(ActionEvent e){
+
+        if(list1.getSelectedIndices().length != 1 ){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblVeiculo.getText()));
+            return;
+        }
+        if(list2.getSelectedIndices().length != 1 ){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblCliente.getText()));
+            return;
+        }
+        if(!textField1.getText().matches("\\d{1,5}.\\d{0,2}")){
+            Erros.mostrarErro(this,4,Erros.removeLastChar(lblValor.getText()));
+            return;
+        }
+        if(comboBox1.getSelectedIndex() != 0 && comboBox1.getSelectedIndex() != 1){
+            Erros.mostrarErro(this,2,Erros.removeLastChar(lblTTransacao.getText()));
+            return;
+        }
+
         transacaoPresente.setValor(Float.parseFloat(textField1.getText()));
         transacaoPresente.setCliente(DadosApp.getInstancia().getClientes().get(list2.getSelectedIndex()));
         transacaoPresente.setVeiculo(DadosApp.getInstancia().getVeiculos().get(list1.getSelectedIndex()));
