@@ -116,7 +116,7 @@ public class DadosPeca extends JDialog {
             Erros.mostrarErro(this,1,Erros.removeLastChar(lblmov.getText()));
             return;
         }
-        pecaPresente.setDesignacao(textDescrição.getText());
+        pecaPresente.setDesignacao(textDesignação.getText());
         pecaPresente.setDescricao(textDescrição.getText());
         pecaPresente.setMarca(textMarca.getText());
         pecaPresente.setMarcaVeiculo(textMaV.getText());

@@ -290,7 +290,7 @@
                     </constraints>
                     <properties>
                       <font size="14" style="1"/>
-                      <text value="Janela de Peças"/>
+                      <text value="Janela de Armazéns"/>
                     </properties>
                   </component>
                 </children>

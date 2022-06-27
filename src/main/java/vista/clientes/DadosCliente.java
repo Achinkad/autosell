@@ -67,7 +67,7 @@ public class DadosCliente extends JDialog {
         textNome.setText(cliente.getNome());
         textTelefone.setText(Integer.toString(cliente.getTelefone()));
         textEmails.setText(clientePresente.getEmail());
-        textContribuinte.setText(Integer.toString(cliente.getTelefone()));
+        textContribuinte.setText(Integer.toString(cliente.getContribuinte()));
         textMorada.setText(cliente.getMorada());
 
 
