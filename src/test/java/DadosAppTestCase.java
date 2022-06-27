@@ -45,4 +45,25 @@ public class DadosAppTestCase {
         da.inserirTransporte(transporte);
         assertSame(transporte, da.getTransportes().get(0));
     }
+    @Test
+    public void testarInserirCliente(){
+        var cliente = new Cliente("Nome",622754348,"Rua .",922557485,"n@email.com",new FichaCliente());
+        da.inserirCliente(cliente);
+        assertSame(da.getClientes().get(0),cliente);
+    }
+    @Test
+    public void testarRemoverCliente(){
+        var cliente = new Cliente("Nome",622754348,"Rua .",922557485,"n@email.com",new FichaCliente());
+        da.inserirCliente(cliente);
+        assertSame(da.getClientes().size(),1);
+        da.removerCliente(cliente);
+        assertSame(da.getClientes().size(),0);
+    }
+    @Test
+    public void testarInserirTransacao(){
+        var cliente = new Cliente("Nome",622754348,"Rua .",922557485,"n@email.com",new FichaCliente());
+        var transacao = new Transacao(cliente,new Veiculo("AS-DS-55","BMW","S1","Verde",170,"Descrição",cliente,new FichaVeiculo(),"Troca"),750.23f);
+        da.inserirTransacao(transacao);
+        assertSame(da.getTransacoes().get(0),transacao);
+    }
 }

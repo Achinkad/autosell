@@ -54,7 +54,7 @@ public class DadosApp {
         return new LinkedList<>(clientes);
     }
 
-    public void addCLiente(Cliente cliente){
+    public void inserirCLiente(Cliente cliente){
         clientes.add(cliente);
     }
 
@@ -97,7 +97,7 @@ public class DadosApp {
         return new LinkedList<>(armazens);
     }
 
-    public void addArmazem(Armazem armazem){
+    public void inserirArmazem(Armazem armazem){
         armazens.add(armazem);
     }
 
@@ -123,10 +123,10 @@ public class DadosApp {
     public void removerTransacao(Transacao transacao) {
         transacoes.remove(transacao);
     }
-    public void addTransacao(Transacao transacao){
+    public void inserirTransacao(Transacao transacao){
         transacoes.add(transacao);
     }
-    public void addPeca(Peca peca){
+    public void inserirPeca(Peca peca){
         pecas.add(peca);
     }
 

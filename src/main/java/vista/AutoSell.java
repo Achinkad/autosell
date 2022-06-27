@@ -53,10 +53,10 @@ public class AutoSell extends JFrame {
         Transporte t = new Transporte<>(null,new Date(10,2,2020),new Date(10,2,2020),local);
 
 
-        DadosApp.getInstancia().addPeca(p);
+        DadosApp.getInstancia().inserirPeca(p);
         DadosApp.getInstancia().inserirVeiculo(v);
-        DadosApp.getInstancia().addCLiente(z);
-        DadosApp.getInstancia().addCLiente(c);
+        DadosApp.getInstancia().inserirCLiente(z);
+        DadosApp.getInstancia().inserirCLiente(c);
         DadosApp.getInstancia().inserirReparacao(reparacao);
 
         DadosApp.getInstancia().inserirLocal(local);

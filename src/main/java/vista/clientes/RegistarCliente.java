@@ -89,7 +89,7 @@ public class RegistarCliente extends JDialog {
             Erros.mostrarErro(this,6," ");
             return;
         }
-        DadosApp.getInstancia().addCLiente(new Cliente(textNome.getText(),Integer.parseInt(textContribuinte.getText()),textMorada.getText(),Integer.parseInt(textTelefone.getText()),textEmails.getText(),new FichaCliente()));
+        DadosApp.getInstancia().inserirCLiente(new Cliente(textNome.getText(),Integer.parseInt(textContribuinte.getText()),textMorada.getText(),Integer.parseInt(textTelefone.getText()),textEmails.getText(),new FichaCliente()));
         dispose();
     }
     private void btnCancelarActionPerformed(ActionEvent e){

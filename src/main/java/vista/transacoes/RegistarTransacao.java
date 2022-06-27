@@ -92,7 +92,7 @@ public class RegistarTransacao extends JDialog {
             return;
         }
 
-        DadosApp.getInstancia().addTransacao(new Transacao(DadosApp.getInstancia().getClientes().get(listClientes.getSelectedIndex()),DadosApp.getInstancia().getVeiculos().get(listVeiculos.getSelectedIndex()),Integer.parseInt(textValor.getText())));
+        DadosApp.getInstancia().inserirTransacao(new Transacao(DadosApp.getInstancia().getClientes().get(listClientes.getSelectedIndex()),DadosApp.getInstancia().getVeiculos().get(listVeiculos.getSelectedIndex()),Integer.parseInt(textValor.getText())));
         LinkedList<Transacao> transacoes = DadosApp.getInstancia().getTransacoes();
         if(comboBox1.getSelectedIndex() == 0){
             transacoes.get(transacoes.size() - 1).setTipoTransacao(TipoTransacao.DEBITO);

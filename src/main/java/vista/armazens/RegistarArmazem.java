@@ -96,7 +96,7 @@ public class RegistarArmazem extends JDialog {
             return;
         }
 
-        DadosApp.getInstancia().addArmazem(new Armazem(textNome.getText(),Integer.parseInt(textTelefone.getText()),pecasDoArmazem,pecasDoArmazem.size()));
+        DadosApp.getInstancia().inserirArmazem(new Armazem(textNome.getText(),Integer.parseInt(textTelefone.getText()),pecasDoArmazem,pecasDoArmazem.size()));
         dispose();
     }
     private void btnCancelarActionPerformed(ActionEvent e){

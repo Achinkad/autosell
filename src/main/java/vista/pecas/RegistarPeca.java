@@ -78,7 +78,7 @@ public class RegistarPeca extends JDialog {
             Erros.mostrarErro(this,1,Erros.removeLastChar(lblmov.getText()));
             return;
         }
-        DadosApp.getInstancia().addPeca(new Peca(textReferencia.getText(),textMarca.getText(),Float.parseFloat(textPreco.getText()),textDescricao.getText(),textMaV.getText(),textMoV.getText(),textDesignacao.getText()));
+        DadosApp.getInstancia().inserirPeca(new Peca(textReferencia.getText(),textMarca.getText(),Float.parseFloat(textPreco.getText()),textDescricao.getText(),textMaV.getText(),textMoV.getText(),textDesignacao.getText()));
         dispose();
     }
 
