@@ -1,4 +1,4 @@
-;import modelo.*;
+import modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;

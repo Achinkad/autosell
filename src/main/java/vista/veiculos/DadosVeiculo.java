@@ -96,9 +96,9 @@ public class DadosVeiculo extends JDialog {
 
         if(isEditavel){
             editarButton.setVisible(true);
-            editarButton.addActionListener(this::btnEditarActionListener);
+            editarButton.addActionListener(this::btnEditarActionPerformed);
             cancelarButton.setVisible(true);
-            //cancelarButton.addActionListener(this::btnCancelarActionListener);
+            cancelarButton.addActionListener(this::btnCancelarActionPerformed);
         }
 
         pack();
@@ -107,7 +107,7 @@ public class DadosVeiculo extends JDialog {
 
 
 
-    private void btnEditarActionListener(ActionEvent e){
+    private void btnEditarActionPerformed(ActionEvent e){
         String matricula=Matricula.getText();
         String marca = Marca.getText();
         String modelo = Modelo.getText();
@@ -116,9 +116,9 @@ public class DadosVeiculo extends JDialog {
         String motivoVenda= MotivoVenda.getText();
         String observacoes = Observacoes.getText();
 
-        if (matricula.isEmpty()|| matricula.length()<2 || matricula.length()>255){
+        if (matricula.isEmpty()|| matricula.length()<2 || matricula.length()>255) {
             Erros.mostrarErro(this, 1, Erros.removeLastChar(matricula));
-            if(marca.isEmpty() || marca.length()<2 || matricula.length()>255){
+        }else if(marca.isEmpty() || marca.length()<2 || matricula.length()>255){
                 Erros.mostrarErro(this, 1, Erros.removeLastChar(marca));
 
             } else if (modelo.isEmpty() || modelo.length()<2 || modelo.length()>255) {
@@ -142,7 +142,7 @@ public class DadosVeiculo extends JDialog {
                 Erros.mostrarErro(this, 2, Erros.removeLastChar(cliente.getNome()));
 
             }
-        }else {
+        else {
             veiculoPresente.setDescricao(observacoes);
             veiculoPresente.setMarca(marca);
             veiculoPresente.setModelo(modelo);
@@ -162,6 +162,8 @@ public class DadosVeiculo extends JDialog {
 
         dispose();
     }
-
+    private void btnCancelarActionPerformed(ActionEvent e){
+        dispose();
+    }
 
 }
