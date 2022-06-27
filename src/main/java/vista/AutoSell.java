@@ -40,16 +40,17 @@ public class AutoSell extends JFrame {
         menuAux.iniciaMenu(menuItems);
         pack();
 
-        Peca p = new Peca("ref","Chinês",800,"desc","BMW","15","Oleo");
-        Cliente c = new Cliente("Titi",12343,"asas",123344,"ola",null);
-        Cliente z = new Cliente("Manel",12343,"asas",123344,"ola",null);
-        Veiculo v = new Veiculo("123455","OLA","OLA","AZUL",123,"ASDDS",z,null,"asd");
-        Filial f= new Filial(null,null,false,"as","as","as",12,null);
-        Oficina oficina = new Oficina("Mille", 911222333, "mille@oficina.com", "Marco", 919333777);
+        Peca p = new Peca("ref51SDe5fddse","Luka",800,"Caixa de velocidades","BMW","i8","Caixa de velocidades");
+        Cliente c = new Cliente("Maria",569958748,"Leiria",93627447,"maria@gmail.com",new FichaCliente());
+        Cliente z = new Cliente("Manel",123438688,"Porto",91886382,"manel@sapo.pt",new FichaCliente());
+        Veiculo v = new Veiculo("MD-49_87","BMW","i8","AZUL",2300,"Usado",z,new FichaVeiculo(),"falta de caixa de Velocidades");
+        Oficina oficina = new Oficina("Oficina 1 Filial Leiria", 911222333, "o1@leria.pt", "António", 919333777);
+        LinkedList<Oficina> oficinas = new LinkedList<>();
+        oficinas.add(oficina);
+        Filial f = new Filial(oficinas,new LinkedList<>(),false,"Filial de Leiria","Leiria","Centro",120,new LinkedList<>());
+        Reparacao reparacao = new Reparacao(TipoReparacao.MUDANCA_PECAS, v, oficina, "Caixa de velocidades", "21-12-2022", "22-12-2022", "Inspeção", null);
 
-        Reparacao reparacao = new Reparacao(TipoReparacao.MUDANCA_PECAS, v, oficina, "muito trabalho", "22-12-2022", "22-12-2022", "muitos", null);
-
-        Local local = new Local("aaa","aaa","asasa",12,null);
+        Local local = new Local("Leiria","Leiria","Centro",120,new LinkedList<>());
         Transporte t = new Transporte<>(null,new Date(10,2,2020),new Date(10,2,2020),local);
 
 
