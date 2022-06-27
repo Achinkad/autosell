@@ -114,7 +114,7 @@ public class RegistarEvento extends JDialog {
             }else if(moradaA.isEmpty() || moradaA.length()<2 || moradaA.length()>255){
                 Erros.mostrarErro(this, 1, Erros.removeLastChar(moradaA));
 
-            } else if (maxVeiculo>=0 || maxVeiculo>500) {
+            } else if (maxVeiculo<=0 || maxVeiculo>500) {
                 Erros.mostrarErro(this,9,Erros.removeLastChar(String.valueOf(maxVeiculo)));
                 
             } else if (veiculosSelecionados.isEmpty()) {
@@ -124,7 +124,7 @@ public class RegistarEvento extends JDialog {
                 Erros.mostrarErro(this, 10, Erros.removeLastChar(dataInicio.getData()));
 
                 
-            } else if (dataFim==null || dataInicio.getDia()>31 || dataInicio.getMes()>12 || dataInicio.getAno()<1900 || dataInicio.getDia()*100000000+dataInicio.getMes()*1000000+dataInicio.getAno()*10000>dataFim.getDia()*100000000+dataFim.getMes()*1000000+dataFim.getAno()*10000) {
+            } else if (dataFim==null || dataInicio.getDia()>31 || dataInicio.getMes()>12 || dataInicio.getAno()<1900 || dataInicio.getAno()*100000000+dataInicio.getMes()*10000+dataInicio.getDia()*100>dataFim.getAno()*100000000+dataFim.getMes()*10000+dataFim.getDia()*100) {
                 Erros.mostrarErro(this, 11, Erros.removeLastChar(dataFim.getData()));
 
             } else {

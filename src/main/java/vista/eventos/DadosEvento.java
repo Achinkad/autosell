@@ -125,14 +125,14 @@ public class DadosEvento extends JDialog{
             }else if(moradaA.isEmpty() || moradaA.length()<2 || moradaA.length()>255){
                 Erros.mostrarErro(this, 1, Erros.removeLastChar(moradaA));
 
-            } else if (maxVeiculo>=0 || maxVeiculo>500) {
+            } else if (maxVeiculo<=0 || maxVeiculo>500) {
                 Erros.mostrarErro(this,9,Erros.removeLastChar(String.valueOf(maxVeiculo)));
 
             } else if (dateInicio==null || dateInicio.getDia()>31 || dateInicio.getMes()>12 || dateInicio.getAno()>1900) {
                 Erros.mostrarErro(this, 10, Erros.removeLastChar(dateInicio.getData()));
 
 
-            } else if (dateFim==null || dateInicio.getDia()>31 || dateInicio.getMes()>12 || dateInicio.getAno()>1900 || dateInicio.getDia()*100000000+dateInicio.getMes()*1000000+dateInicio.getAno()*10000>dateFim.getDia()*100000000+dateFim.getMes()*1000000+dateFim.getAno()*10000) {
+            } else if (dateFim==null || dateInicio.getDia()>31 || dateInicio.getMes()>12 || dateInicio.getAno()>1900 || dateInicio.getAno()*100000000+dateInicio.getMes()*10000+dateInicio.getDia()*100>dateFim.getAno()*100000000+dateFim.getMes()*10000+dateFim.getDia()*100) {
                 Erros.mostrarErro(this, 11, Erros.removeLastChar(dateFim.getData()));
 
             }

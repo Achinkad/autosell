@@ -113,7 +113,7 @@ public class DadosTransporte extends JDialog{
         localSelecionado= locais.get(selectedFilial);
         if (dateExpedicao == null || dateExpedicao.getDia() > 31 || dateExpedicao.getMes() > 12 || dateExpedicao.getAno() < 1900) {
             Erros.mostrarErro(this, 10, Erros.removeLastChar(dateExpedicao.getData()));
-        }else if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() < 1900 || dateExpedicao.getDia() * 100000000 + dateExpedicao.getMes() * 1000000 + dateExpedicao.getAno() * 10000 > dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000) {
+        }else if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() < 1900 || dateExpedicao.getAno() * 100000000 + dateExpedicao.getMes() * 10000 + dateExpedicao.getDia() * 100 > dataEntrega.getAno() * 100000000 + dataEntrega.getMes() * 10000 + dataEntrega.getDia() * 100) {
                 Erros.mostrarErro(this, 12, Erros.removeLastChar(dataEntrega.getData()));
                 return;
             }

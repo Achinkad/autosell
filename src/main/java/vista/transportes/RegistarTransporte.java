@@ -137,7 +137,7 @@ public class RegistarTransporte extends JDialog {
             localSelecionado = locais.get(selectedLocal);
             if (dataExpedicao == null || dataExpedicao.getDia() > 31 || dataExpedicao.getMes() > 12 || dataExpedicao.getAno() < 1900) {
                 Erros.mostrarErro(this, 10, Erros.removeLastChar(dataExpedicao.getData()));
-            }else if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() < 1900 || dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000 > dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000) {
+            }else if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() < 1900 || dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 10000 + dataEntrega.getAno() * 100 > dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 10000 + dataEntrega.getAno() * 100) {
                     Erros.mostrarErro(this, 12, Erros.removeLastChar(dataEntrega.getData()));
                     return;
                 }
