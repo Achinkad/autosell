@@ -47,9 +47,18 @@ public class DadosAppTestCase {
     }
 
     @Test
-    public void testarInserirOficina(){
+    public void testarInserirOficina() {
         var oficina = new Oficina("Grande Oficina",929192921,"asd@ola.com","Manuel Titi",912929292);
         da.inserirOficina(oficina);
         assertSame(oficina,da.getOficinas().get(0));
+    }
+
+    @Test
+    public void testarInserirFilial() {
+        var oficinas = new LinkedList<Oficina>();
+        var armazens = new LinkedList<Armazem>();
+        var veiculos = new LinkedList<Veiculo>();
+        Filial filial = new Filial(oficinas, armazens, false, "Muito boa filial", "Santarém", "Vale de santarém", 15, veiculos);
+        da.inserirFilial(filial);
     }
 }
