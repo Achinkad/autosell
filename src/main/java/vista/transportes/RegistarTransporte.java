@@ -129,21 +129,20 @@ public class RegistarTransporte extends JDialog {
         private void btnAdicionarActionPerformed(ActionEvent e) {
             System.out.println(anoExpedicao.getValue());
             Date dataExpedicao = new Date((Integer) diaExpedicao.getValue(), (Integer) mesExpedicao.getValue(), (Integer) anoExpedicao.getValue());
-            Date dataEntrega = new Date((Integer) diaEntrega.getValue(), (Integer) mesEntrega.getValue(), (Integer) mesEntrega.getValue());
+            Date dataEntrega = new Date((Integer) diaEntrega.getValue(), (Integer) mesEntrega.getValue(), (Integer) anoEntrega.getValue());
             int selectedLocal = listaLocais.getSelectedIndex();
             if (selectedLocal < 0) {
                 return;
             }
             localSelecionado = locais.get(selectedLocal);
-            if (dataExpedicao == null || dataExpedicao.getDia() > 31 || dataExpedicao.getMes() > 12 || dataExpedicao.getAno() > 1900) {
+            if (dataExpedicao == null || dataExpedicao.getDia() > 31 || dataExpedicao.getMes() > 12 || dataExpedicao.getAno() < 1900) {
                 Erros.mostrarErro(this, 10, Erros.removeLastChar(dataExpedicao.getData()));
-
-                if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() > 1900 || dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000 > dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000) {
+            }else if (dataEntrega == null || dataEntrega.getDia() > 31 || dataEntrega.getMes() > 12 || dataEntrega.getAno() < 1900 || dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000 > dataEntrega.getDia() * 100000000 + dataEntrega.getMes() * 1000000 + dataEntrega.getAno() * 10000) {
                     Erros.mostrarErro(this, 12, Erros.removeLastChar(dataEntrega.getData()));
                     return;
                 }
 
-            } else {
+            else {
                 if (veiculoCheckBox.isSelected()) {
                     int[] selectedVeiculos = listaItems.getSelectedIndices();
                     if (selectedVeiculos.length < 0) {

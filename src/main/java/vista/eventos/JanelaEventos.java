@@ -57,8 +57,7 @@ public class JanelaEventos extends JFrame {
         DefaultListModel model = new DefaultListModel();
         for (Evento e : eventos) {
             listaDeEventos.setModel(model);
-            DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, getLocale());
-            model.addElement("Filial: "+e.getFilial().getDesignacao()+"   Localização: "+e.getLocalizacao()+"   Data de início:"+dateFormat.format(e.getDataInicio())+" Data de fim:"+dateFormat.format(e.getDateFim()));
+            model.addElement("Filial: "+e.getFilial().getDesignacao()+"   Localização: "+e.getLocalizacao()+"   Data de início:"+e.getDataInicio().getData()+" Data de fim:"+e.getDateFim().getData());
         }
         listaDeEventos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         registarEvento.addActionListener(this::btnRegistarActionPerformed);

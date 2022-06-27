@@ -116,10 +116,9 @@ public class DadosEvento extends JDialog{
             return;
         }
         filialSelecionada = filiais.get(selectedFilial);
-        if (filialSelecionada==null){
+        if (filialSelecionada==null) {
             Erros.mostrarErro(this, 2, Erros.removeLastChar(filialSelecionada.getDesignacao()));
-
-            if (localizacaoA.isEmpty() || localizacaoA.length()<2 || localizacaoA.length()>255){
+        } else if (localizacaoA.isEmpty() || localizacaoA.length()<2 || localizacaoA.length()>255){
                 Erros.mostrarErro(this, 1, Erros.removeLastChar(localizacaoA));
 
 
@@ -137,7 +136,7 @@ public class DadosEvento extends JDialog{
                 Erros.mostrarErro(this, 11, Erros.removeLastChar(dateFim.getData()));
 
             }
-        }else {
+        else {
             eventoPresente.setDesignacao(designacaoA);
             eventoPresente.setLocalizacao(localizacaoA);
             eventoPresente.setMorada(moradaA);

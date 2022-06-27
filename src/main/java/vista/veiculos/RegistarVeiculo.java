@@ -90,9 +90,9 @@ public class RegistarVeiculo extends JDialog {
                 break;
             }
         }
-        if (matricula.isEmpty()|| matricula.length()<2 || matricula.length()>255){
+        if (matricula.isEmpty()|| matricula.length()<2 || matricula.length()>255) {
             Erros.mostrarErro(this, 1, Erros.removeLastChar(matricula));
-            if(marca.isEmpty() || marca.length()<2 || matricula.length()>255){
+        }else if(marca.isEmpty() || marca.length()<2 || matricula.length()>255){
                 Erros.mostrarErro(this, 1, Erros.removeLastChar(marca));
                 return;
 
@@ -116,8 +116,7 @@ public class RegistarVeiculo extends JDialog {
             } else if (cliente==null ) {
                 Erros.mostrarErro(this, 2, Erros.removeLastChar(cliente.getNome()));
                 return;
-            }
-        }else {
+            } else {
             DadosApp.getInstancia().inserirVeiculo(new Veiculo(matricula, marca, modelo, cor,quilometragem , observacoes, cliente, null,motivoVenda));
         }
         dispose();
