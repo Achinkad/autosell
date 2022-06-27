@@ -3,12 +3,9 @@ package vista.eventos;
 import modelo.*;
 import vista.Erros;
 import vista.MenuAux;
-import vista.veiculos.DadosVeiculo;
-import vista.veiculos.JanelaVeiculos;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 public class RegistarEvento extends JDialog {
@@ -133,7 +130,7 @@ public class RegistarEvento extends JDialog {
 
             }
         }else {
-            DadosApp.getInstancia().addEvento(new Evento(dataInicio, dataFim, filialSelecionada, designacaoA, localizacaoA, moradaA, maxVeiculo, veiculosSelecionados));
+            DadosApp.getInstancia().inserirEvento(new Evento(dataInicio, dataFim, filialSelecionada, designacaoA, localizacaoA, moradaA, maxVeiculo, veiculosSelecionados));
         }
         dispose();
     }

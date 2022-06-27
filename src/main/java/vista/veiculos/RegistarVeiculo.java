@@ -118,7 +118,7 @@ public class RegistarVeiculo extends JDialog {
                 return;
             }
         }else {
-            DadosApp.getInstancia().addVeiculo(new Veiculo(matricula, marca, modelo, cor,quilometragem , observacoes, cliente, null,motivoVenda));
+            DadosApp.getInstancia().inserirVeiculo(new Veiculo(matricula, marca, modelo, cor,quilometragem , observacoes, cliente, null,motivoVenda));
         }
         dispose();
     }

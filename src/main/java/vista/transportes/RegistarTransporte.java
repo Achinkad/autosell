@@ -152,7 +152,7 @@ public class RegistarTransporte extends JDialog {
                     for (int i : selectedVeiculos) {
                         veiculosSelecionados.add(veiculos.get(i));
                     }
-                    DadosApp.getInstancia().addTransporte(new TransporteVeiculo(veiculosSelecionados, dataExpedicao, dataEntrega, localSelecionado));
+                    DadosApp.getInstancia().inserirTransporte(new TransporteVeiculo(veiculosSelecionados, dataExpedicao, dataEntrega, localSelecionado));
                     dispose();
                 }
                 if (pecaCheckBox.isSelected()) {
@@ -163,7 +163,7 @@ public class RegistarTransporte extends JDialog {
                     for (int i : selectedPecas) {
                         pecasSelecionadas.add(pecas.get(i));
                     }
-                    DadosApp.getInstancia().addTransporte(new TransportePeca(pecasSelecionadas, dataExpedicao, dataEntrega, localSelecionado));
+                    DadosApp.getInstancia().inserirTransporte(new TransportePeca(pecasSelecionadas, dataExpedicao, dataEntrega, localSelecionado));
                     dispose();
                 }
             }

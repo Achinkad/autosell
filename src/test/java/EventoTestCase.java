@@ -23,4 +23,5 @@ public class EventoTestCase {
         assertEquals(2,evento.getNumMaxVeiuclos());
         assertEquals(veiculos,evento.getVeiculosAssociados());
     }
+
 }
