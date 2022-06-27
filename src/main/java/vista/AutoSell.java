@@ -2,21 +2,8 @@ package vista;
 
 import modelo.*;
 import modelo.Date;
-import vista.armazens.JanelaArmazens;
-import vista.clientes.JanelaClientes;
-import vista.estatisticas.JanelaEstatisticas;
-import vista.eventos.JanelaEventos;
-import vista.filiais.JanelaFiliais;
-import vista.oficinas.JanelaOficinas;
-import vista.pecas.DadosPeca;
-import vista.pecas.JanelaPecas;
-import vista.reparacoes.JanelaReparacoes;
-import vista.transacoes.JanelaTransacoes;
-import vista.transportes.JanelaTransportes;
-import vista.veiculos.JanelaVeiculos;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
 public class AutoSell extends JFrame {
@@ -67,15 +54,15 @@ public class AutoSell extends JFrame {
 
 
         DadosApp.getInstancia().addPeca(p);
-        DadosApp.getInstancia().addVeiculo(v);
+        DadosApp.getInstancia().inserirVeiculo(v);
         DadosApp.getInstancia().addCLiente(z);
         DadosApp.getInstancia().addCLiente(c);
         DadosApp.getInstancia().inserirReparacao(reparacao);
 
-        DadosApp.getInstancia().addLocal(local);
+        DadosApp.getInstancia().inserirLocal(local);
         DadosApp.getInstancia().inserirOficina(oficina);
-        DadosApp.getInstancia().addFilial(f);
-        DadosApp.getInstancia().addTransporte(t);
+        DadosApp.getInstancia().inserirFilial(f);
+        DadosApp.getInstancia().inserirTransporte(t);
     }
 
     public static void main(String[] args) {

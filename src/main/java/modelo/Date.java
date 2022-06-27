@@ -44,6 +44,6 @@ public class Date {
         this.ano = ano;
     }
     public String getData(){
-        return ano+"-"+mes+"-"+dia;
+        return dia+"-"+mes+"-"+ano;
     }
 }

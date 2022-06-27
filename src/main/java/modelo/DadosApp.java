@@ -153,18 +153,15 @@ public class DadosApp {
     public void removerOficina(Oficina oficina) {
         oficinas.remove(oficina);
     }
-    public void addVeiculo(Veiculo veiculo){
-        veiculos.add(veiculo);
-    }
-    public void addEvento(Evento evento){
+
+    public void inserirEvento(Evento evento){
         eventos.add(evento);
     }
-    public void addFilial(Filial filial){filiais.add(filial);
-    }
-    public void addTransporte(Transporte transporte){
+
+    public void inserirTransporte(Transporte transporte){
         transportes.add(transporte);
     }
-    public void addLocal(Local local){
+    public void inserirLocal(Local local){
         locais.add(local);
     }
     public void removerVeiculo(Veiculo veiculo) {
