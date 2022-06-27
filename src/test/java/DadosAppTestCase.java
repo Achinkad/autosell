@@ -45,4 +45,11 @@ public class DadosAppTestCase {
         da.inserirTransporte(transporte);
         assertSame(transporte, da.getTransportes().get(0));
     }
+
+    @Test
+    public void testarInserirOficina(){
+        var oficina = new Oficina("Grande Oficina",929192921,"asd@ola.com","Manuel Titi",912929292);
+        da.inserirOficina(oficina);
+        assertSame(oficina,da.getOficinas().get(0));
+    }
 }
