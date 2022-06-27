@@ -70,7 +70,7 @@ public class DadosEvento extends JDialog{
         designacao.setText(evento.getDesignacao());
         localizacao.setText(evento.getLocalizacao());
         morada.setText(evento.getMorada());
-        nMaxVeiculos.setValue(evento.getNumMaxVeiuclos());
+        nMaxVeiculos.setValue(evento.getNumeroMaxVeiculos());
         dataInicio.setValue(evento.getDataInicio().getDia());
         mesInicio.setValue(evento.getDataInicio().getMes());
         anoInicio.setValue(evento.getDataInicio().getAno());
@@ -141,7 +141,7 @@ public class DadosEvento extends JDialog{
             eventoPresente.setDesignacao(designacaoA);
             eventoPresente.setLocalizacao(localizacaoA);
             eventoPresente.setMorada(moradaA);
-            eventoPresente.setNumMaxVeiuclos(maxVeiculo);
+            eventoPresente.setNumeroMaxVeiculos(maxVeiculo);
             eventoPresente.setDataInicio(dateInicio);
             eventoPresente.setDateFim(dateFim);
             eventoPresente.setFilial(filialSelecionada);

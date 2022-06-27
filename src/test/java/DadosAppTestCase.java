@@ -45,6 +45,7 @@ public class DadosAppTestCase {
         da.inserirTransporte(transporte);
         assertSame(transporte, da.getTransportes().get(0));
     }
+
     @Test
     public void testarInserirCliente(){
         var cliente = new Cliente("Nome",622754348,"Rua .",922557485,"n@email.com",new FichaCliente());
@@ -60,10 +61,27 @@ public class DadosAppTestCase {
         assertSame(da.getClientes().size(),0);
     }
     @Test
-    public void testarInserirTransacao(){
-        var cliente = new Cliente("Nome",622754348,"Rua .",922557485,"n@email.com",new FichaCliente());
-        var transacao = new Transacao(cliente,new Veiculo("AS-DS-55","BMW","S1","Verde",170,"Descrição",cliente,new FichaVeiculo(),"Troca"),750.23f);
+    public void testarInserirTransacao() {
+        var cliente = new Cliente("Nome", 622754348, "Rua .", 922557485, "n@email.com", new FichaCliente());
+        var transacao = new Transacao(cliente, new Veiculo("AS-DS-55", "BMW", "S1", "Verde", 170, "Descrição", cliente, new FichaVeiculo(), "Troca"), 750.23f);
         da.inserirTransacao(transacao);
-        assertSame(da.getTransacoes().get(0),transacao);
+        assertSame(da.getTransacoes().get(0), transacao);
+    }
+
+    @Test
+    public void testarInserirOficina() {
+        var oficina = new Oficina("Grande Oficina",929192921,"asd@ola.com","Manuel Titi",912929292);
+        da.inserirOficina(oficina);
+        assertSame(oficina,da.getOficinas().get(0));
+    }
+
+    @Test
+    public void testarInserirFilial() {
+        var oficinas = new LinkedList<Oficina>();
+        var armazens = new LinkedList<Armazem>();
+        var veiculos = new LinkedList<Veiculo>();
+        Filial filial = new Filial(oficinas, armazens, false, "Muito boa filial", "Santarém", "Vale de santarém", 15, veiculos);
+        da.inserirFilial(filial);
+
     }
 }

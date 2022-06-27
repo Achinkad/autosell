@@ -20,8 +20,8 @@ public class EventoTestCase {
         assertEquals("Ola",evento.getDesignacao());
         assertEquals("Guarda",evento.getLocalizacao());
         assertEquals("Rua das Rosas",evento.getMorada());
-        assertEquals(2,evento.getNumMaxVeiuclos());
-        assertEquals(veiculos,evento.getVeiculosAssociados());
+        assertEquals(2,evento.getNumeroMaxVeiculos());
+        assertEquals(veiculos,evento.getVeiculos());
     }
 
 }
